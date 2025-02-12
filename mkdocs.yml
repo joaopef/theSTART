@@ -1,10 +1,12 @@
+site_name: theSTART
+nav:
+  - Home: index.md
+  - Setup(vazio):
+      - Installation: installation.md
+      - Configuration: config.md
+  - Guides:
+      - Pwnzilla: README.md
+      - Pwnzilla INFO: HOW_IT_WORKS.md
+  - About: about.md
 theme:
-  name: material
-  palette:
-    primary: 'indigo'
-    accent: 'red'
-    - scheme: default  # Light mode
-    - scheme: dark     # Dark mode
-  features:
-    - dark_mode.toggle  # Enable dark mode toggle
-
+  name: dracula
