@@ -1,0 +1,10 @@
+theme:
+  name: material
+  palette:
+    primary: 'indigo'
+    accent: 'red'
+    - scheme: default  # Light mode
+    - scheme: dark     # Dark mode
+  features:
+    - dark_mode.toggle  # Enable dark mode toggle
+
