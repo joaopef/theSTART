@@ -5,8 +5,22 @@ nav:
       - Installation: installation.md
       - Configuration: config.md
   - Guides:
-      - Pwnzilla: README.md
+      - Pwnzilla: PwnZilla Guia.md
       - Pwnzilla INFO: HOW_IT_WORKS.md
   - About: about.md
+
 theme:
-  name: dracula
+  name: dracula  # Use the Dracula theme
+  color_mode: auto  # Automatically switch between light and dark based on the user's system preference
+  user_color_mode_toggle: true  # Enable color mode toggle in the navigation bar
+
+ 
+extra_css:
+  - styles.css  # Path to your custom styles.css (optional)
+
+# Optional: Enable highlight.js for syntax highlighting
+markdown_extensions:
+  - codehilite:
+      guess_lang: false  # Disable automatic guessing of code language
+  - toc:
+      permalink: true  # Enable table of contents

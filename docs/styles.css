@@ -1,0 +1,33 @@
+/* Change the top navbar background color */
+.md-header {
+  background-color: #282a36 !important; /* Dracula background color */
+}
+
+/* Change text color in navbar */
+.md-header__inner {
+  color: #f8f8f2 !important; /* Light text */
+}
+
+/* Style the dark mode toggle button */
+.md-header__button {
+  color: #bd93f9 !important; /* Dracula purple */
+}
+
+/* Change sidebar background color */
+.md-sidebar {
+  background-color: #282a36 !important;
+}
+
+/* Change sidebar text color */
+.md-sidebar__inner {
+  color: #f8f8f2 !important;
+}
+
+/* Style links */
+a {
+  color: #50fa7b !important; /* Dracula green */
+}
+
+a:hover {
+  color: #ff79c6 !important; /* Dracula pink */
+}
