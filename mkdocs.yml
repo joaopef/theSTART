@@ -7,6 +7,7 @@ nav:
   - Guides:
       - Pwnzilla: PwnZilla Guia.md
       - Pwnzilla INFO: HOW_IT_WORKS.md
+      - Self-Host Password Manager: Password Manager.md
   - About: about.md
 
 theme:
