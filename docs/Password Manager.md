@@ -41,13 +41,13 @@ Since SSH was enabled at the time of writing the OS, I can now connect to the Ra
 To make sure everything runs smoothly, update and upgrade software packages with
 ```sudo apt update && sudo apt upgrade -y ```
 
-Set Up the Waveshare e-Paper HAT.
-Need the Waveshare library to interact with the e-paper display.
+### Set Up the Waveshare e-Paper HAT
+
 
 1. Enable SPI on Raspberry Pi with the command
 ``sudo raspi-config``
 2. Interfacing Options → SPI → Enable
-3. ``sudo reboot``
+3. Reboot: ``sudo reboot``
 4. Installing the libraries: 
 ```
 sudo apt-get update
@@ -59,5 +59,10 @@ sudo apt-get install python3-psutil
 ```
 git clone https://github.com/waveshare/e-Paper.git
 ```
-6. using the library epd2in13_V4 and the example epd2in13_V4_test as starting point, made a [simple code](system_monitor.py) to display system info as Temp, Uptime, IP, etc..
+6. using the library epd2in13_V4 and the example epd2in13_V4_test as starting point, made a system_monitor.py to display system info as Temp, Uptime, IP, etc..
 **add more stuff when bitwarden is implemented.**
+
+### Install Docker and Portainer
+
+1. Install [Docker](https://docs.docker.com/desktop/setup/install/linux/): ``curl -sSL https://get.docker.com | sh``
+2.
