@@ -15,7 +15,7 @@ I gathered the following **hardware**:
 
 ## Step 1: Flash Raspberry Pi OS Lite (64-bit)
 
-The first step was to flash **Raspberry Pi OS Lite (64-bit)** onto the microSD card. I used the [Raspberry Pi Imager](https://www.raspberrypi.com/software/). tool to complete this process:
+The first step was to flash **Raspberry Pi OS Lite (64-bit)** onto the microSD card. I used the [Raspberry Pi Imager](https://www.raspberrypi.com/software/) tool to complete this process:
 
 
 1. Insert the microSD card into the **card reader**.
@@ -31,7 +31,33 @@ Since SSH was enabled at the time of writing the OS, I can now connect to the Ra
 
 1. Insert the microSD card into the Raspberry Pi and power it on.
 2. Open **PuTTY** on my Windows PC.
-3. Enter the Raspberry Pi's **IP address** (found via my router or network scanner) in the **Host Name (or IP address)** field.
+3. Enter the Raspberry Pi's **IP address** (found via **nmap**) in the **Host Name (or IP address)** field.
 4. Ensure the **Port** is set to `22` and **Connection type** is **SSH**.
 5. Click **Open** to initiate the connection.
 6. When prompted, enter the **username** and **password** set during configuration.
+
+## Step 3: On the terminal
+
+To make sure everything runs smoothly, update and upgrade software packages with
+```sudo apt update && sudo apt upgrade -y ```
+
+Set Up the Waveshare e-Paper HAT.
+Need the Waveshare library to interact with the e-paper display.
+
+1. Enable SPI on Raspberry Pi with the command
+``sudo raspi-config``
+2. Interfacing Options → SPI → Enable
+3. ``sudo reboot``
+4. Installing the libraries: 
+```
+sudo apt-get update
+sudo apt-get install python3-pip python3-pil python3-numpy
+sudo apt-get install python3-spidev python3-rpi.gpio
+sudo apt-get install python3-psutil
+```
+5. Clone the [waveshareteam repo](https://github.com/waveshareteam/e-Paper/): 
+```
+git clone https://github.com/waveshare/e-Paper.git
+```
+6. using the library epd2in13_V4 and the example epd2in13_V4_test as starting point, made a [simple code](system_monitor.py) to display system info as Temp, Uptime, IP, etc..
+**add more stuff when bitwarden is implemented.**
