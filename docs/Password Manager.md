@@ -62,10 +62,38 @@ cd ~/e-Paper/RaspberryPi_JetsonNano/python
 ```
 6. Since I'm using the Waveshare 2.13-inch v4 display, I grabbed the epd2in13_V4 module from
 ../lib/waveshare_epd and used ../examples/epd2in13_V4_test.py as a starting point.
-From there, I built [system_monitor_v1.py](../docs/system_monitor_v1.py) to display system info like temperature, uptime, and IP address.
-**inserir imagem e add more stuff when bitwarden is implemented.**
-
+From there, I built [system_monitor_v1](system_monitor_v1.txt) to display system info like temperature, uptime, and IP address.
+**add more stuff when bitwarden is implemented.**
+![system_monitor](imgs/system_monitor.jpeg)
 ### Install Docker and Portainer
 
 1. Install [Docker](https://docs.docker.com/desktop/setup/install/linux/): ``curl -sSL https://get.docker.com | sh``
-2.
+2. Permit my default joaof user to access this Docker installation: ``sudo usermod -aG docker joaof``
+3. Rebooted the system: ``sudo reboot``
+4. Although Docker containers can be managed via the command line, Portainer provides a user-friendly GUI interface for deploying and managing our Docker containers on Raspberry Pi. To pull the latest version of Portainer from Docker Hub: ``sudo docker pull portainer/portainer-ce:latest``
+5. Creating and running a Portainer container. This will expose the Portainer web interface on port 9000 and ensure Portainer is always restarted if the system reboots.
+```
+sudo docker run -d -p 9000:9000 --restart=always --name=portainer -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+```
+6. With the container running, opened then web browser and accessed the Portainer UI with: ``http://192.168.1.228:9000``.
+
+### Install and Set Up Bitwarden RS (Vaultwarden) 
+ 
+ After creating a Portainer account, I'll deploy and set up a self-hosted BitWarden server on the Pi.
+
+ 1. Click on **Volume** > **Add Volume**
+ 2. Created a volume named BitWardenServer
+ 3. **Containers** > **Add Container** and did the following:
+    - Name: BitWarden
+    - Image: vaultwarden/server:1.32.0 (latest was not working) 
+    - map additional port from host 0.0.0.0:8080 to container 80 this way any device in the network can access the container
+    - **Volumes** > **Map additional volume** with ``/data`` in the container field and the ``BitwardenServer``volume created before
+    - Under Restart Policy selected ``Always``
+    - Finally click **Deploy the container** and after a few minutes, the BitWarden server is displayed as healthy
+4. I can now visit ``http://192.168.1.228:8080`` Which opens the Bitwarden web UI.
+
+### Set Up the reverse proxy
+
+To access and use Bitwarden, I need to set up a reverse proxy. For this I'll be using [Nginx](https://nginxproxymanager.com/)
+
+
