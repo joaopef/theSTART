@@ -12,7 +12,7 @@ I’ve chosen to use jayofelony’s v2.8.9 image because the AI feature was remo
 
 For this setup, I’ll be using Windows as my main operating system, along with PuTTY for SSH access and 7-Zip to extract the image file. Additionally, I’ll need RNDIS drivers, which can be downloaded from ModCloud [here](https://modclouddownloadprod.blob.corwindows.net/shared/mod-rndis-driver-windows.zip)
 
-If you’re looking for a deeper explanation of how the Pwnagotchi works, feel free to check out HOW_IT_WORKS.md.
+If you’re looking for a deeper explanation of how the Pwnagotchi works, feel free to check out [in depth info](../docs/HOW_IT_WORKS.md).
 
 ![Pwnzilla Setup](images/pwnzilla-setup.jpg)  
 

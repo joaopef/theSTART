@@ -9,6 +9,7 @@ So,
 I gathered the following **hardware**:
 
 - **Raspberry Pi Zero 2 W**, compact and low-power makes it ideal for self-hosted applications.
+- **Waveshare 2.13 inch e-paper HAT v4**
 - **MicroSD card**
 - **Card reader**
 - **Windows**
@@ -38,29 +39,31 @@ Since SSH was enabled at the time of writing the OS, I can now connect to the Ra
 
 ## Step 3: On the terminal
 
-To make sure everything runs smoothly, update and upgrade software packages with
+To make sure everything runs smoothly, I started by updating and upgrading the software packages:
 ```sudo apt update && sudo apt upgrade -y ```
 
 ### Set Up the Waveshare e-Paper HAT
 
-
-1. Enable SPI on Raspberry Pi with the command
+1. Enabled SPI on my Raspberry Pi by running:
 ``sudo raspi-config``
-2. Interfacing Options → SPI → Enable
-3. Reboot: ``sudo reboot``
-4. Installing the libraries: 
+2. Navigated to Interfacing Options → SPI → Enable
+3. After enabling SPI, I rebooted the system: ``sudo reboot``
+4. Installing the necessary Python libraries:
 ```
 sudo apt-get update
 sudo apt-get install python3-pip python3-pil python3-numpy
 sudo apt-get install python3-spidev python3-rpi.gpio
 sudo apt-get install python3-psutil
 ```
-5. Clone the [waveshareteam repo](https://github.com/waveshareteam/e-Paper/): 
+5. Cloned the [waveshareteam repo](https://github.com/waveshareteam/e-Paper/) and moved into the correct directory: 
 ```
 git clone https://github.com/waveshare/e-Paper.git
+cd ~/e-Paper/RaspberryPi_JetsonNano/python
 ```
-6. using the library epd2in13_V4 and the example epd2in13_V4_test as starting point, made a system_monitor.py to display system info as Temp, Uptime, IP, etc..
-**add more stuff when bitwarden is implemented.**
+6. Since I'm using the Waveshare 2.13-inch v4 display, I grabbed the epd2in13_V4 module from
+../lib/waveshare_epd and used ../examples/epd2in13_V4_test.py as a starting point.
+From there, I built [system_monitor_v1.py](../docs/system_monitor_v1.py) to display system info like temperature, uptime, and IP address.
+**inserir imagem e add more stuff when bitwarden is implemented.**
 
 ### Install Docker and Portainer
 
