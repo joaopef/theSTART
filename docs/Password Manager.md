@@ -159,7 +159,7 @@ At this point I should've been able to connect to https://chaveman.duckdns.org b
 an SSL error on the browser and using [Port Checker](https://portchecker.co/) I can see that my ISP is blocking inbound traffic for port 443.
 
 5. Access my router configurations to port forward the 443 port to the rpi.
-6. Finally connect to https://chaveman.duckdns.org and access Vaultwarden.
+6. Finally connect to [https://chaveman.duckdns.org](https://chaveman.duckdns.org) and access Vaultwarden.
 
 
 ### Enhancing Vaultwarden with an E-Paper Display
