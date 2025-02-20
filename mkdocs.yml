@@ -1,13 +1,14 @@
 site_name: theSTART
-nav:
+site_url: https://your-username.github.io/your-repository/
+nav:https://github.com/JoF3r/theSTART/
   - Home: index.md
   - Setup(vazio):
       - Installation: installation.md
       - Configuration: config.md
   - Guides:
       - Pwnzilla: PwnZilla Guia.md
-      - Pwnzilla INFO: HOW_IT_WORKS.md
-      - Self-Host Password Manager: Password Manager.md
+      - Pwnzilla INFO: 1HOW_IT_WORKS.md
+      - Self-Hosted Password Manager: Password Manager.md
   - About: about.md
 
 theme:
