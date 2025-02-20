@@ -1,0 +1,97 @@
+import time
+import psutil
+import socket
+import os
+import sys
+from datetime import datetime
+from PIL import Image, ImageDraw, ImageFont
+import atexit  # For handling cleanup on exit
+
+sys.path.append('/home/joaof/e-Paper/RaspberryPi_JetsonNano/python/lib/waveshare_epd')
+import epd2in13_V4
+
+# Initialize e-Paper
+epd = epd2in13_V4.EPD()
+epd.init()
+epd.Clear()  # Clear the display initially
+
+# Font setup
+font = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', 14)
+
+def get_rpi_ip_address():
+    """Get the Raspberry Pi's IP address"""
+    try:
+        # Get all network interfaces
+        interfaces = psutil.net_if_addrs()
+        for interface_name, interface_addresses in interfaces.items():
+            # Skip loopback and docker interfaces
+            if interface_name == 'lo' or interface_name.startswith('docker'):
+                continue
+            for address in interface_addresses:
+                # Check for IPv4 addresses
+                if address.family == socket.AF_INET:
+                    return address.address
+    except Exception as e:
+        print(f"Error fetching IP address: {e}")
+    return "N/A"
+
+def get_system_status():
+    """Get system status information"""
+    cpu_usage = psutil.cpu_percent()
+    mem = psutil.virtual_memory().percent
+    uptime = time.time() - psutil.boot_time()
+    uptime_str = f"{int(uptime//3600)}h {int((uptime%3600)//60)}m"
+    
+    # Get CPU temperature
+    temps = psutil.sensors_temperatures()
+    cpu_temp = temps.get('cpu_thermal', [])
+    temp = cpu_temp[0].current if cpu_temp else 'N/A'
+    
+    # Get Raspberry Pi's IP address
+    ip_address = get_rpi_ip_address()
+
+    return {
+        "CPU": f"{cpu_usage}%",
+        "Memory": f"{mem}%",
+        "Temp": f"{temp}°C",
+        "Uptime": uptime_str,
+        "IP": ip_address,
+        "Time": datetime.now().strftime("%H:%M:%S")
+    }
+
+def display_status():
+    """Render and display system status on e-Paper with partial updates"""
+    # Create a single image buffer (rotated for horizontal display)
+    image = Image.new('1', (epd.height, epd.width), 255)  # Swap width and height for horizontal layout
+    draw = ImageDraw.Draw(image)
+
+    # Fetch system info
+    status = get_system_status()
+
+    # Draw text in a single column on the left side
+    y = 5  # Starting Y position
+    for key, value in status.items():
+        draw.text((5, y), f"{key}: {value}", font=font, fill=0)
+        y += 20  # Move down for the next line
+
+    # Rotate the image 90 degrees clockwise for horizontal display
+    image = image.rotate(90, expand=True)
+
+    # Perform a partial update (only changes are updated)
+    epd.displayPartial(epd.getbuffer(image))
+
+def cleanup():
+    """Cleanup function to put the display to sleep on exit"""
+    epd.sleep()
+    print("Display put to sleep.")
+
+# Register the cleanup function to run on program exit
+atexit.register(cleanup)
+
+if __name__ == "__main__":
+    # Initial full display
+    display_status()
+    
+    while True:
+        time.sleep(30)  # Wait for 30 seconds
+        display_status()  # Update the display with new values
