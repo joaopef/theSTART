@@ -1,6 +1,6 @@
 site_name: theSTART
-site_url: https://your-username.github.io/your-repository/
-nav:https://github.com/JoF3r/theSTART/
+site_url: https://joaopef.github.io/theSTART/
+nav:
   - Home: index.md
   - Setup(vazio):
       - Installation: installation.md

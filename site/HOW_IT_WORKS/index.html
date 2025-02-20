@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+        <title>Pwnagotchi: How it Works - theSTART</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        
+        <link rel="canonical" href="https://joaopef.github.io/theSTART/HOW_IT_WORKS/">
+        
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="../assets/css/darcula-highlight.min.css">
+
+        <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../assets/css/dracula-ui.min.css">
+        <link rel="stylesheet" href="../assets/css/mkdocs.min.css">
+            <link href="../styles.css" rel="stylesheet">
+
+        
+            <link  rel="icon" type="image/x-icon" href="../assets/img/favicon.ico">
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+                <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="drac-bg-black-secondary drac-text-grey-ternary drac-text drac-scrollbar-purple">
+
+    <main class="d-flex">
+
+        <!-- block sidebar -->
+            <nav id="sidebar" class="sidebar drac-bg-black">
+    <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            <i class="fa fa-bars"></i>
+            <span class="sr-only">Menu</span>
+        </button>
+    </div>
+
+    <div class="p-4">
+        
+
+        <div class="drac-text-center">
+            
+                <span class="drac-text drac-line-height drac-text-white">theSTART</span>
+            
+        </div>
+
+        <div class="drac-box flex-column">
+            <ul class="dot-ul">
+                <li><div class="dot-li drac-bg-cyan"></div></li>
+                <li><div class="dot-li drac-bg-green"></div></li>
+                <li><div class="dot-li drac-bg-orange"></div></li>
+                <li><div class="dot-li drac-bg-pink"></div></li>
+                <li><div class="dot-li drac-bg-purple"></div></li>
+                <li><div class="dot-li drac-bg-red"></div></li>
+                <li><div class="dot-li drac-bg-yellow"></div></li>
+            </ul>
+        </div>
+
+        <hr class="drac-divider" />
+
+        <!-- block menu -->
+        <ul class="mb-5 drac-list drac-list-none">
+            
+            <li class="drac-box">
+                <a href=".."
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    Home
+                </a>
+            </li>
+            <li class="drac-box">
+                <a href=".."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#setup(vazio)-collapse" aria-expanded="false">
+                    Setup(vazio)
+                </a>
+                <div class="collapse" id="setup(vazio)-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../installation.md"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Installation
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../config.md"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Configuration
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href=".."
+                    class="
+                    drac-anchor btn-toggle d-inline-flex align-items-center border-0 drac-text-purple--hover collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#guides-collapse" aria-expanded="false">
+                    Guides
+                </a>
+                <div class="collapse" id="guides-collapse">
+                    <ul class="mb-5 drac-list drac-list-none">
+                            
+    <li class="drac-box-ternary">
+        <a href="../PwnZilla%20Guia/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Pwnzilla
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../1HOW_IT_WORKS.md"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Pwnzilla INFO
+        </a>
+    </li>
+                            
+    <li class="drac-box-ternary">
+        <a href="../Password%20Manager/"
+            class="
+            drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+            Self-Hosted Password Manager
+        </a>
+    </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="drac-box">
+                <a href="../about.md"
+                    class="
+                    drac-anchor d-inline-flex align-items-center border-0 drac-text-purple--hover">
+                    About
+                </a>
+            </li>
+        </ul>
+        <!-- endblock -->
+    </div>
+</nav>
+        <!-- endblock -->
+
+        <nav class="divider drac-bg-purple-cyan"></nav>
+
+        <div class="content">
+            <!-- block header -->
+                <header>
+    <nav class="navbar navbar-expand-xl drac-bg-purple">
+        <div class="container-fluid">
+            
+            <button class="navbar-toggler w-100 text-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+                aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+                <ul class="navbar-nav text-md-center">
+
+                    <!-- block preview -->
+                    <li class="nav-item">
+                            
+                    </li>
+                    <!--  endblock -->
+
+                    <!-- block search -->
+                    <li class="nav-item"><div role="search" class="search-box">
+	<form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+		<input type="text" name="q" class="drac-input drac-input-search drac-input-white drac-text-white drac-bg-black-secondary"
+		placeholder="Search docs" title="Type search term here" />
+	</form>
+</div>
+                    </li>
+                    <!--  endblock -->
+
+                    <!-- block source -->
+                    <li class="nav-item">
+                        
+                    </li>
+                    <!--  endblock -->
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+            <!-- endblock -->
+
+            <!-- block content -->
+                <section class="p-md-5 section-content">
+    <article>
+        <p><h1 id="pwnagotchi-how-it-works">Pwnagotchi: How it Works<a class="headerlink" href="#pwnagotchi-how-it-works" title="Permanent link">&para;</a></h1>
+<p>Pwnagotchi is an <strong>A2C-based</strong> (“AI”) powered by <strong>bettercap</strong> that learns from its surrounding WiFi environment in order to maximize the crackable WPA key material it captures (either through passive sniffing or by performing <strong>deauthentication</strong> and <strong>association attacks</strong>). This material is collected on disk as <strong>PCAP files</strong> containing any form of crackable <strong>handshake</strong> supported by <strong>hashcat</strong>, including full and half WPA handshakes as well as <strong>PMKIDs</strong>.</p>
+<h3 id="key-terms">Key Terms<a class="headerlink" href="#key-terms" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>A2C</strong>: This stands for <strong>Advantage Actor-Critic</strong>, which is an algorithm used in <strong>reinforcement learning</strong>. It combines both the <strong>actor</strong> (which decides what action to take) and the <strong>critic</strong> (which evaluates the action taken). A2C is used in the Pwnagotchi’s <strong>AI</strong> to help it adapt and improve its actions over time, based on the feedback from its environment.</p>
+</li>
+<li>
+<p><strong>Bettercap</strong>: This is a tool used for <strong>network attacks</strong> and <strong>packet manipulation</strong>, which allows Pwnagotchi to interact with wireless networks and gather data for <strong>Wi-Fi cracking</strong>.</p>
+</li>
+<li>
+<p><strong>Deauthentication and Association Attacks</strong>: These are types of attacks used to <strong>disrupt the connection</strong> between a device and a Wi-Fi network. Deauthentication causes a device to disconnect from a network, and Association attacks allow Pwnagotchi to intercept the process and capture <strong>handshakes</strong>.</p>
+</li>
+<li>
+<p><strong>PCAP files</strong>: These are files used to store network traffic data, specifically <strong>Wi-Fi handshakes</strong> (critical for cracking WPA keys). Pwnagotchi collects these for later <strong>hashcat</strong> processing.</p>
+</li>
+<li>
+<p><strong>Handshakes</strong>: These are pieces of data exchanged between a Wi-Fi client and an access point during the connection process. They are essential for <strong>cracking WPA keys</strong>.</p>
+</li>
+<li>
+<p><strong>Hashcat</strong>: A <strong>password cracking tool</strong> used to <strong>crack encrypted data</strong> like WPA handshakes. It can use various techniques to try and break the encryption.</p>
+</li>
+<li>
+<p><strong>PMKID</strong>: This is a specific type of data that can also be used to crack WPA encryption. PMKID is a <strong>Pre-Shared Key</strong> identifier used in WPA2 networks and is often targeted in <strong>Wi-Fi hacking</strong>.</p>
+</li>
+</ul>
+<h3 id="how-does-pwnagotchi-work">How does Pwnagotchi work?<a class="headerlink" href="#how-does-pwnagotchi-work" title="Permanent link">&para;</a></h3>
+<p>Instead of merely playing Super Mario or Atari games like most <strong>reinforcement learning-based AI</strong> (yawn), Pwnagotchi tunes its own parameters over time to get better at pwning WiFi things in the environments you expose it to.</p>
+<p>To be more precise, Pwnagotchi is using an <strong>LSTM</strong> with an <strong>MLP feature extractor</strong> as its policy network for the <strong>A2C agent</strong>. If you’re unfamiliar with <strong>A2C</strong>, here is a very good introductory explanation (in comic form!) of the basic principles behind how Pwnagotchi learns. Be sure to check out the Usage doc for more pragmatic details of how to help your Pwnagotchi learn as quickly as possible.</p>
+<ul>
+<li>
+<p><strong>LSTM (Long Short-Term Memory)</strong>: A type of <strong>recurrent neural network (RNN)</strong> used in machine learning. LSTM networks are great for learning from sequences of data (like Wi-Fi networks over time) because they can "remember" past events and adjust their actions accordingly.</p>
+</li>
+<li>
+<p><strong>MLP (Multilayer Perceptron)</strong>: A type of <strong>neural network</strong> used for feature extraction, which helps the system analyze and process data more effectively. Pwnagotchi uses it to process information from the Wi-Fi environment and make better decisions.</p>
+</li>
+</ul>
+<p>Unlike the usual reinforcement learning simulations, Pwnagotchi actually learns at a human timescale because it is interacting with a real-world environment instead of a well-defined virtual environment (like playing Super Mario). Time for a Pwnagotchi is measured in <strong>epochs</strong>; a single epoch can last anywhere from a few seconds to many minutes, depending on how many <strong>access points</strong> and <strong>client stations</strong> are visible.</p>
+<ul>
+<li><strong>Epoch</strong>: In machine learning, an epoch refers to one complete cycle through the entire dataset. For Pwnagotchi, this means a cycle of interaction with Wi-Fi networks.</li>
+</ul>
+<p>Do not expect your Pwnagotchi to perform amazingly well at the very beginning, as it will be exploring several combinations of key parameters to determine ideal adjustments for pwning the particular environment you are exposing it to during its beginning epochs ... but definitely listen to your Pwnagotchi when it tells you it's bored! Bring it into novel WiFi environments with you and have it observe new networks and capture new handshakes—and you'll see. :)</p>
+<h3 id="multi-unit-interaction">Multi-Unit Interaction<a class="headerlink" href="#multi-unit-interaction" title="Permanent link">&para;</a></h3>
+<p>Multiple units within close physical proximity can “talk” to each other, advertising their own presence to each other by broadcasting custom information elements using a <strong>parasite protocol</strong> I’ve built on top of the existing <strong>dot11</strong> standard. Over time, two or more Pwnagotchi units trained together will learn to cooperate upon detecting each other’s presence by dividing the available channels among them for optimal pwnage.</p>
+<ul>
+<li>
+<p><strong>Parasite protocol</strong>: A custom protocol developed to allow multiple Pwnagotchi devices to communicate with each other, sharing information about their surrounding networks and synchronizing their activities for more efficient Wi-Fi cracking.</p>
+</li>
+<li>
+<p><strong>dot11 standard</strong>: Refers to the IEEE <strong>802.11 standard</strong>, which defines the protocols for <strong>wireless networking</strong>, like Wi-Fi. This is the foundation for how Pwnagotchi interacts with Wi-Fi networks.</p>
+</li>
+</ul>
+<h3 id="moods-and-states">Moods and States<a class="headerlink" href="#moods-and-states" title="Permanent link">&para;</a></h3>
+<p>Depending on the status of the unit, several states and state transitions are configurable and represented on the display as different <strong>moods</strong>, <strong>expressions</strong>, and sentences. Pwnagotchi speaks many languages, too!</p>
+<ul>
+<li><strong>Moods</strong>: The "mood" refers to the way Pwnagotchi expresses its internal state visually and verbally. Moods can change based on how well it is performing or how "bored" it is with the environment.</li>
+</ul>
+<p>Of course, it IS possible to run your Pwnagotchi with the AI disabled (configurable in <code>config.toml</code>). Why might you want to do this? Perhaps you simply want to use your own fixed parameters (instead of letting the AI decide for you), or maybe you want to save battery and CPU cycles, or maybe it’s just you have strong concerns about aiding and abetting baby Skynet. Whatever your particular reasons may be: an AI-disabled Pwnagotchi is still a simple and very effective automated <strong>deauther</strong>, <strong>WPA handshake sniffer</strong>, and portable <strong>bettercap + webui</strong> dedicated hardware.</p>
+<ul>
+<li>
+<p><strong>Deauther</strong>: A tool that performs <strong>deauthentication attacks</strong>, disrupting Wi-Fi connections and enabling the capture of <strong>handshakes</strong> for WPA cracking.</p>
+</li>
+<li>
+<p><strong>WebUI</strong>: A <strong>web user interface</strong> that allows you to interact with Pwnagotchi through a browser for easier management and monitoring.</p>
+</li>
+</ul></p>
+    </article>
+</section>
+            <!-- endblock -->
+
+            <!-- block footer -->
+                <footer>
+    <div class="d-flex flex-sm-row justify-content-between py-2 border-top drac-text-black drac-bg-cyan-green">
+        <a href="https://github.com/dracula/mkdocs" target="_blank" style="padding-left: 1%;"
+            class="footer-text drac-anchor drac-text-black drac-text-purple--hover">
+            Made with Dracula Theme for MkDocs
+        </a>
+    </div>
+</footer>
+            <!-- endblock -->
+        </div>
+
+    </main>
+
+        <script>var base_url = '..';</script>
+        <script src="../assets/js/jquery-3.3.1.slim.min.js"></script>
+        <script src="../assets/js/bootstrap.bundle.min.js"></script>
+        <script src="../assets/js/mkdocs.js"></script>
+			<script src="../search/main.js" defer></script>
+
+</body>
+
+</html>
