@@ -12,9 +12,21 @@ nav:
   - About: about.md
 
 theme:
-  name: dracula  # Use the Dracula theme
-  color_mode: auto  # Automatically switch between light and dark based on the user's system preference
-  user_color_mode_toggle: true  # Enable color mode toggle in the navigation bar
+  name: material  # Use the Dracula theme
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+
+    - scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
 
  
 extra_css:
