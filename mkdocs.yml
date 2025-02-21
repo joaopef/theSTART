@@ -3,14 +3,10 @@ site_url: https://joaopef.github.io/theSTART/
 
 nav:
   - Home: index.md
-  - Setup:
-      - Installation: installation.md
-      - Configuration: config.md
   - Guides:
       - Pwnzilla: PwnZilla Guia.md
       - Pwnzilla INFO: 1HOW_IT_WORKS.md
       - Self-Hosted Password Manager: Password Manager.md
-  - About: about.md
 
 theme:
   name: material
