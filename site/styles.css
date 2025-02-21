@@ -4,3 +4,8 @@ img {
   max-width: 30%;
   height: auto;
 }
+
+/* Only affects the logo */
+.md-header__button.md-logo img {
+  max-width: 100px;
+}
