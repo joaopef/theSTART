@@ -2,18 +2,20 @@ site_name: theSTART
 site_url: https://joaopef.github.io/theSTART/
 
 nav:
-  - Home: en/index.md
+  - Home: index.md
   - Setup:
-      - Installation: en/installation.md
-      - Configuration: en/config.md
+      - Installation: installation.md
+      - Configuration: config.md
   - Guides:
-      - Pwnzilla: en/PwnZilla Guia.md
-      - Pwnzilla INFO: en/1HOW_IT_WORKS.md
-      - Self-Hosted Password Manager: en/Password Manager.md
-  - About: en/about.md
+      - Pwnzilla: PwnZilla Guia.md
+      - Pwnzilla INFO: 1HOW_IT_WORKS.md
+      - Self-Hosted Password Manager: Password Manager.md
+  - About: about.md
 
 theme:
   name: material
+  favicon: images/lightning.svg
+  logo: images/lightning.svg
   features:
     - search.suggest
     - search.highlight
@@ -38,10 +40,10 @@ theme:
 extra:
   alternate:
     - name: English
-      link: /en/
+      link: /
       lang: en
     - name: Português (PT)
-      link: /pt/
+      link: /theSTART/pt/
       lang: pt
   social:
     - icon: fontawesome/brands/github-alt
