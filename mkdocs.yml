@@ -17,6 +17,8 @@ theme:
   favicon: images/lightning.svg
   logo: images/lightning.svg
   features:
+    - header.autohide
+    - navigation.top
     - search.suggest
     - search.highlight
     - content.tabs.link
