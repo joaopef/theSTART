@@ -1,4 +1,4 @@
-# Self-Hosting Vaultwarden on Raspberry Pi Zero 2 W
+# Self-Hosting Vaultwarden on Raspberry Pi Zero 2
 ## Why?
 Many people use simple or reused passwords for online services because they are easier to remember. While I used to do the same, I realized that storing passwords in web browsers is neither secure nor advisable.
 
@@ -14,7 +14,7 @@ To achieve this, I used the following **hardware**:
 - **Card reader**
 - **Windows PC**
 
-## Step 1: Flash Raspberry Pi OS Lite (64-bit)
+## Flash Raspberry Pi OS Lite (64-bit)
 
 The first step was to flash **Raspberry Pi OS Lite (64-bit)** onto the microSD card. I used the [Raspberry Pi Imager](https://www.raspberrypi.com/software/) tool to complete this process.
 
@@ -28,7 +28,7 @@ Enabling SSH allows remote access and control over the Raspberry Pi from another
 
 5. **Save** and click **Yes** to use the settings, then wait to **write**.
 
-## Step 2: Connect Over SSH
+## Connect Over SSH
 
 Since SSH was enabled at the time of writing the OS, I can now connect to the Raspberry Pi over SSH using [PuTTY](https://www.putty.org/):
 
@@ -39,7 +39,7 @@ Since SSH was enabled at the time of writing the OS, I can now connect to the Ra
 5. Click **Open** to initiate the connection.
 6. When prompted, enter the **username** and **password** set during configuration.
 
-## Step 3: On the terminal
+## On the terminal
 
 To make sure everything runs smoothly, I started by updating and upgrading the software packages:
 
@@ -150,9 +150,9 @@ Since the Web UI’s file explorer only shows local files, I had to copy the cer
 2. Returned to the **Nginx Proxy Manager Web UI** > **SSL Certificates** > 
 **Add SSL Certificate** > **Custom** and selected the cert files:
 3. **Add Proxy Host**:
-![addproxygoste](imgs/ProxyHost.png)
+![addproxygoste](images/ProxyHost.png)
 4. Under **SSL**:
-![ssl](imgs/SSLProxyHost.png)
+![ssl](images/SSLProxyHost.png)
 
 
 At this point I should've been able to connect to https://chaveman.duckdns.org but i was getting
@@ -183,6 +183,6 @@ cd ~/e-Paper/RaspberryPi_JetsonNano/python
 6. For the Waveshare 2.13-inch v4 display, I used the ``epd2in13_V4`` module from ``../lib/waveshare_epd`` and tested it using ``../examples/epd2in13_V4_test.py``.
 From there, I built [system_monitor_v1](system_monitor_v1.txt) to display system info like temperature, uptime, and IP address.
 
-![system_monitor](imgs/system_monitor.jpeg)
+![system_monitor](images/system_monitor.jpeg)
 
 outra possibilidade seria obter um dominio e cloudflare tunnel
