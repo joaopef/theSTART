@@ -10,6 +10,7 @@ nav:
 
 theme:
   name: material
+  home_url: /theSTART/
   favicon: images/lightning.svg
   logo: images/lightning.svg
   features:
@@ -36,18 +37,29 @@ theme:
         name: Switch to light mode
 
 extra:
-  alternate:
-    - name: English
-      link: /
-      lang: en
-    - name: Português (PT)
-      link: /theSTART/pt/
-      lang: pt
   social:
     - icon: fontawesome/brands/github-alt
       link: https://github.com/joaopef/
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/joaopefer/
+
+plugins:
+  - search
+  - i18n:
+      reconfigure_material: true
+      docs_structure: folder
+      languages:
+        - locale: en
+          name: English
+          build: true
+          default: true
+          link: /
+        - locale: pt
+          name: Português (PT)
+          build: true
+          link: /pt/
+
+
 
 
 extra_css:
@@ -61,3 +73,4 @@ markdown_extensions:
 
 copyright: 
   "&copy; 2025 <a href='https://github.com/joaopef/' target='_blank' rel='noopener'>João Ferreira</a>"
+
