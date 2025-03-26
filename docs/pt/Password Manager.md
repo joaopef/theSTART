@@ -1,188 +1,192 @@
-# Self-Hosting Vaultwarden on Raspberry Pi Zero 2
-## Why?
-Many people use simple or reused passwords for online services because they are easier to remember. While I used to do the same, I realized that storing passwords in web browsers is neither secure nor advisable.
+# Auto-hospedagem do Vaultwarden no Raspberry Pi Zero 2  
 
-To improve my security, I decided to set up a self-hosted password manager using **Vaultwarden**. 
+## Porquê?  
 
-Vaultwarden is a lightweight, self-hosted alternative to Bitwarden. It provides the same functionality while being optimized for low-resource devices like the Raspberry Pi Zero 2 W. It also offers features like Multi-Factor Authentication (MFA), backups, SSL encryption, and remote access, ensuring better security while giving me full control over my credentials.
+Muitas pessoas utilizam palavras-passe simples ou reutilizadas online porque são mais fáceis de memorizar.Embora eu fizesse o mesmo, percebi que armazenar palavras-passe nos browsers não é de todo seguro nem aconselhável.  
 
-To achieve this, I used the following **hardware**:
+Para melhorar a minha segurança, decidi fazer este projeto de um gestor de palavras-passe caseiro utilizando **Vaultwarden**.  
 
-- **Raspberry Pi Zero 2 W**, compact and low-power makes it ideal for self-hosted applications.
-- **Waveshare 2.13 inch e-paper HAT v4**
-- **MicroSD card** with 32Gb
-- **Card reader**
-- **Windows PC**
+O Vaultwarden é uma alternativa leve e "auto-hospedada" ao Bitwarden. As funcionalidades são as mesmas, mas é otimizado para dispositivos de baixo consumo como o Raspberry Pi Zero 2W. Além disso, inclui funcionalidades como Autenticação Multi-Fator (MFA), backups, encriptação SSL e acesso remoto, garantindo uma maior segurança enquanto mantenho o controlo total sobre os meus logins. 
 
-## Step 1: Flash Raspberry Pi OS Lite (64-bit)
+Para alcançar este objetivo, utilizei o seguinte **hardware**:  
 
-The first step was to flash **Raspberry Pi OS Lite (64-bit)** onto the microSD card. I used the [Raspberry Pi Imager](https://www.raspberrypi.com/software/) tool to complete this process.
+- **Raspberry Pi Zero 2 W**, compacto e de baixo consumo, ideal para este tipo de aplicações.  
+- **Waveshare 2.13 polegadas e-paper HAT v4**  
+- **Cartão MicroSD** de 32GB, 16Gb chega mas why not.
+- **Leitor de cartões** 
+- **PC com Windows**  
 
-1. Insert the microSD card into the **card reader**.
-2. Open **Raspberry Pi Imager** and **Choose OS** > **Raspberry Pi OS (Other)** > **Raspberry Pi OS Lite (64-bit)**.
-3. Choose the microSD card as the storage device.
-4. Click **Next**, then **Edit Settings** to configure: 
-Enable **Set hostname**, set up a **username and password**, **Configure Wireless LAN** and  Enable **SSH** to allow remote access.
+## Flashar o Raspberry Pi OS Lite (64 bits)  
 
-Enabling SSH allows remote access and control over the Raspberry Pi from another device. Since the Raspberry Pi Zero 2 W often runs headless (without a monitor or keyboard), SSH provides a convenient way to configure and manage the system over the network.
+O primeiro passo foi flashar o **Raspberry Pi OS Lite (64 bits)** no cartão microSD. Utilizei a ferramenta [Raspberry Pi Imager](https://www.raspberrypi.com/software/) para este efeito.  
 
-5. **Save** and click **Yes** to use the settings, then wait to **write**.
+1. Inserir o cartão microSD no **leitor de cartões** (obvio).  
+2. Abrir o **Raspberry Pi Imager** e selecionar **Choose OS** > **Raspberry Pi OS (Other)** > **Raspberry Pi OS Lite (64-bit)**.  
+3. Escolher o cartão microSD como dispositivo de armazenamento.  
+4. Clicar em **Next** e depois em **Edit Settings** para configurar:  
+   - Ativar **Set hostname**, definir um **nome de utilizador e palavra-passe**, **Configurar Wireless LAN** e ativar **SSH** para permitir o acesso remoto.  
 
-## Step 2: Connect Over SSH
+Ao ativar o SSH (secure shell) consigo aceder e controlar remotamente o meu Raspberry Pi a partir de outro dispositivo. Como o Raspberry Pi Zero 2W é frequentemente utilizado sem monitor ou teclado (headless), ter SSH torna-se uma forma conveniente de configurar e gerir o sistema através da rede.  
 
-Since SSH was enabled at the time of writing the OS, I can now connect to the Raspberry Pi over SSH using [PuTTY](https://www.putty.org/):
+5. **Guardar** e clicar em **Sim** para utilizar as definições, depois aguardar a gravação.
 
-1. Insert the microSD card into the Raspberry Pi and power it on.
-2. Open **PuTTY** on my Windows PC.
-3. Enter the Raspberry Pi's **IP address** (found via **nmap**) in the **Host Name (or IP address)** field.
-4. Ensure the **Port** is set to `22` and **Connection type** is **SSH**.
-5. Click **Open** to initiate the connection.
-6. When prompted, enter the **username** and **password** set during configuration.
+## Ligar via SSH  
 
-## Step 3: On the terminal
+Como ativei o SSH durante a instalação do sistema operativo, posso agora ligar-me ao Raspberry Pi via SSH utilizando o [PuTTY](https://www.putty.org/):  
 
-To make sure everything runs smoothly, I started by updating and upgrading the software packages:
+1. Inserir o cartão microSD no Raspberry Pi e ligá-lo à corrente.  
+2. Abrir o **PuTTY** no PC com Windows.  
+3. Introduzir o **endereço IP** do Raspberry Pi (obtido via **nmap**) no campo **Host Name (or IP address)**.  
+4. Certificar-me de que a **Porta** está definida para `22` e o **Tipo de conexão** é **SSH**.  
+5. Clicar em **Open** para iniciar a ligação.  
+6. Quando solicitado, introduzir o **nome de utilizador** e a **palavra-passe** definidos na configuração.  
 
-```
+## No terminal  
+
+Para garantir que tudo corre sem problemas, comecei por atualizar e atualizar os pacotes de software:  
+
+```bash
 sudo apt update && sudo apt full-upgrade -y
 ```
 
-### Install Docker and Portainer
+### Instalar Docker e Portainer  
 
-1. Install [Docker](https://docs.docker.com/desktop/setup/install/linux/): ``curl -sSL https://get.docker.com | sh``
-2. Grant Docker permissions to my user (joaof): ``sudo usermod -aG docker joaof``
-3. Rebooted the system for changes to take effect.: ``sudo reboot``
-4. Although Docker containers can be managed via the command line, Portainer provides a user-friendly GUI interface for deploying and managing our Docker containers on Raspberry Pi. To pull the latest version of Portainer from Docker Hub: ``sudo docker pull portainer/portainer-ce:latest``
-5. Creating and running a Portainer container. This command exposes the Portainer web interface on port 9000 and ensures Portainer is always restarted if the system reboots.
-```
-sudo docker run -d -p 9000:9000 --restart=always --name=portainer -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
-```
-6. With the container running, opened then web browser and accessed the Portainer UI with: ``http://192.168.1.228:9000``.
+1. Instalar o [Docker](https://docs.docker.com/desktop/setup/install/linux/):   ``` curl -sSL https://get.docker.com | sh ```
+2. Conceder permissões do Docker ao meu utilizador (joaof):  `` sudo usermod -aG docker joaof ``
+3. Reiniciar o sistema para aplicar as alterações: `` sudo reboot ``
+4. Obter a versão mais recente do Portainer:  
+   `` sudo docker pull portainer/portainer-ce:latest ``
+5. Criar e executar um contentor Portainer:  
+   ```bash
+   sudo docker run -d -p 9000:9000 --restart=always --name=portainer -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+   ```
+6. Abrir um navegador web e aceder à interface do Portainer em:  
+   `` http://192.168.1.228:9000 ``
 
-### Install and Set Up Vaultwarden RS (Vaultwarden) 
- 
- After creating a Portainer account, I'll deploy and set up a self-hosted Vaultwarden server on the Pi.
+### Instalar e Configurar o Vaultwarden  
 
- 1. Click on **Volume** > **Add Volume**
- 2. Created a volume named VaultwardenServer
- 3. **Containers** > **Add Container** and did the following:
-    - Name: Vaultwarden
-    - Image: vaultwarden/server:1.32.0 (latest was not working) 
-    - Map an additional port, forwarding 8080 on the host to 80 in the container.
-     This allows any device on the local network to access the Vaultwarden server via http://192.168.1.228:8080.
-    - **Volumes** > **Map additional volume** with ``/data`` in the container field and the ``VaultwardenServer``volume created before
-    - Under Restart Policy selected ``Always``
-    - Finally, click **Deploy the container** and after a few minutes,
-     the Vaultwarden server is displayed as healthy in the Portainer UI
-4. I can now visit ``http://192.168.1.228:8080`` Which opens the Vaultwarden web UI.
+Depois de criar uma conta no Portainer, segui estes passos para instalar e configurar o Vaultwarden no Raspberry Pi.  
 
-### Set Up the reverse proxy
+1. **Volumes** > **Adicionar Volume**  
+2. Criar um volume chamado **VaultwardenServer**  
+3. **Contentores** > **Adicionar Contentor** e configurar da seguinte forma:  
+   - Nome: Vaultwarden  
+   - Imagem: vaultwarden/server:1.32.0 (a versão mais recente não estava a funcionar)
+   - Mapear as portas: 8080 no host → 80 no contentor.  
+   - **Volumes**: associar o volume criado (**VaultwardenServer**) ao diretório `/data` no contentor.  
+   - Política de reinício: **Always**  
+   - Dar **Deploy** ao contentor e Após alguns minutos, o Vaultwarden aparece como **Healthy** na interface do Portainer.  
 
-To access and use Vaultwarden, I need to set up a reverse proxy. For this I'll be using [Nginx Proxy Manager](https://nginxproxymanager.com/).
+4. Agora já posso aceder à interface web do Vaultwarden em:  
+   ``http://192.168.1.228:8080 ``
 
-1. Ran the following command to pull the latest nginx image and start the container:
-```
-sudo docker run -d \
-  --name=nginx-proxy-manager \
-  -p 81:81 \
-  -p 80:80 \
-  -p 443:443 \
-  -v /srv/dev-disk-by-label-Backup/Docker/nginx-proxy-manager/data:/data \
-  -v /srv/dev-disk-by-label-Backup/Docker/nginx-proxy-manager/letsencrypt:/etc/letsencrypt \
-  --restart unless-stopped \
-  jc21/nginx-proxy-manager:latest
-```
-2. To check if the container starts successfully, I opened **Portainer** 
-and verified that the `nginx-proxy-manager` container was running.
- Another way would be to run:  `docker ps -a`. If the container wasn’t running,
-For troubleshooting:  ``docker logs nginx-proxy-manager``.
+## Fazer a Reverse Proxy  
 
-3. With the container up I can access the Nginx Proxy Manager web UI at
- ``http://192.168.1.228:81``.
+Para aceder ao Vaultwarden de forma segura via HTTPS, utilizei um reverse proxy com o amigo [Nginx Proxy Manager](https://nginxproxymanager.com/).  
 
-### Securing Vaultwarden with HTTPS Using Let’s Encrypt & DuckDNS  
+1. Instalar e iniciar o contentor Nginx Proxy Manager:  
+   ```bash
+   sudo docker run -d \
+     --name=nginx-proxy-manager \
+     -p 81:81 \
+     -p 80:80 \
+     -p 443:443 \
+     -v /srv/dev-disk-by-label-Backup/Docker/nginx-proxy-manager/data:/data \
+     -v /srv/dev-disk-by-label-Backup/Docker/nginx-proxy-manager/letsencrypt:/etc/letsencrypt \
+     --restart unless-stopped \
+     jc21/nginx-proxy-manager:latest
+   ```
+2. Para verificar se o contentor iniciou com sucesso, abri o **Portainer** e confirmei que o contentor `` nginx-proxy-manager `` estava em execução. Outra forma seria executar: ``docker ps -a``. 
 
-Now that the reverse proxy is set up, I need to secure access
- to Vaultwarden with HTTPS. I'll use **DuckDNS** for dynamic DNS,
-  and **Let’s Encrypt** to generate a free SSL certificate.  
+    Se o contentor não estivesse a correr, para resolver problemas ver os logs com: ``docker logs nginx-proxy-manager``.
 
-This will allow me to access Vaultwarden securely from anywhere
- without relying on a static IP or a paid domain.
+3. Aceder à interface web do **nginx proxy manager** em:  `` http://192.168.1.228:81 ``
 
-#### Set Up DuckDNS  
-1. Visited [DuckDNS](https://www.duckdns.org/) and created an account.  
-2. Added a new **subdomain** chaveman.duckdns.org and
- linked it to my **IPv4 address**.  
- 3. Copied my **DuckDNS Token** from the page (I'll need it later).
+### Proteger o Vaultwarden com HTTPS usando DuckDNS e Let's Encrypt
 
-#### Generate an SSL Certificate Using Let's Encrypt  
-1. Used **Certbot** with the **DNS-01 challenge** to obtain an SSL certificate
- for my DuckDNS domain:  
-Ran the following command to request a certificate using the **DNS-01 challenge**:  
 
+Agora que a reverse proxy está configurada, é preciso garantir o acesso seguro ao Vaultwarden com HTTPS.  
+Vou usar o **DuckDNS** para DNS dinâmico e o **Let’s Encrypt** para gerar um certificado SSL gratuito.  
+
+Isto vai me permitir aceder ao Vaultwarden de forma segura a partir de qualquer lugar, sem depender de um IP fixo ou de um domínio pago.  
+
+### Configurar o DuckDNS  
+1. Entrei no site [DuckDNS](https://www.duckdns.org/) e criei uma conta grátis.  
+2. Adicionei um novo **subdomínio** `chaveman.duckdns.org` e associei-o ao meu **endereço IPv4**.  
+3. Copiei o meu **Token do DuckDNS** da página (vou precisar dele mais tarde).  
+
+### Gerar um Certificado SSL usando Let's Encrypt  
+
+1. Usei o **Certbot** com o **Desafio DNS-01** para obter um certificado SSL para o meu domínio DuckDNS.  
+Executei o seguinte comando para solicitar um certificado:  
 ```bash
 sudo apt update && sudo apt install certbot -y
 sudo certbot certonly --manual --preferred-challenges dns -d chaveman.duckdns.org
 ```
-2. Certbot provided a TXT record that needs to be added to DNS for verification.
-Using DuckDNS's update URL:
-``https://www.duckdns.org/update?domains=chaveman&token=MY_TOKEN&txt=TXTVALUE&verbose=true``
-i got an OK and this means DuckDNS set my TXT record.
-3. To make sure that the TXT Record was Published waited a couple of minutes for
-DNS to propagate and using Google Admin Toolbox (Dig) I could see my
- TXT Value value under the ANSWER section so we're good to go.
-4. Pressed Enter and Certbot created two cert files ``fullchain.pem`` and
-``privkey.pem`` in ``/etc/letsencrypt/live/Vaultwarden.duckdns.org/``.
-5. ``sudo certbot certificates`` to check the certificates expirity date,
- was 90 days so to make it automaticaly renew: ``sudo crontab -e``
-to open the crontab file with NANO and added the cron job ``0 0 * * * certbot renew --quiet`` which will run Certbot command to renew the SSL certificates automatically, ensuring the website's encryption remains valid without manual intervention.
 
+ 2. O Certbot forneceu um **registo TXT** que tem de ser adicionado ao DNS para verificação.
+ Utilizando o URL de atualização do DuckDNS:
+``https://www.duckdns.org/update?domains=chaveman&token=MEU_TOKEN&txt=VALOR_TXT&verbose=true``
+recebi um **OK**, o que significa que o DuckDNS configurou corretamente o meu registo TXT.
+
+3. Para garantir que o registo TXT foi publicado, esperei alguns minutos para a propagação do DNS.
+Utilizando o Google Admin Toolbox (Dig), confirmei que o meu valor TXT aparecia na secção ANSWER,
+o que significa que estava pronto para prosseguir.
+
+4. Carreguei em **Enter** e o Certbot criou dois ficheiros pem:
+    **fullchain.pem** e **privkey.pem** na pasta:
+    ``/etc/letsencrypt/live/Vaultwarden.duckdns.org/``
+
+5. Para verificar a validade dos certificados, executei:
+    ``sudo certbot certificates`` e verifiquei que os certificados eram válidos por 90 dias, por isso, para renová-los automaticamente, abri o ficheiro de crontab com o comando:
+ ``sudo crontab -e``
+ Adicionei a seguinte tarefa cron:
+``0 0 * * * certbot renew --quiet``
+Isto permite que o Certbot renove automaticamente os certificados SSL,
+garantindo que a encriptação do site se mantém válida sem necessidade de intervenção manual.
 
 #### Nginx Proxy Manager
 
-Since the Web UI’s file explorer only shows local files, I had to copy the cert files from the Raspberry Pi to my local machine so they could be uploaded.
+Uma vez que o explorador de ficheiros da Web UI apenas mostra ficheiros locais, tive de copiar os ficheiros de certificado do Raspberry Pi para o meu computador para que pudessem ser carregados.
 
-1. Copy the cert files to my local machine using ``scp`` (secure copy):
+1. Copiar os ficheiros de certificado para o meu computador usando ``scp`` (secure copy):
 ```bash
   scp joaof@192.168.1.228:/etc/letsencrypt/live/Vaultwarden.duckdns.org/fullchain.pem /home/joaof/Documents/Certificates
   scp joaof@192.168.1.228:/etc/letsencrypt/live/Vaultwarden.duckdns.org/privkey.pem /home/joaof/Documents/Certificates
-```
-2. Returned to the **Nginx Proxy Manager Web UI** > **SSL Certificates** > 
-**Add SSL Certificate** > **Custom** and selected the cert files:
-3. **Add Proxy Host**:
-![addproxygoste](images/ProxyHost.png)
-4. Under **SSL**:
+  ```
+2. Voltar à **Web UI do Nginx Proxy Manager** > **SSL Certificates** >
+**Add SSL Certificate** > **Custom** e selecionar os ficheiros de certificado:
+![certificados](images/SSL_Certificate.png)
+3. **Adicionar Proxy Host**:
+![adicionarproxyhost](images/ProxyHost.png)
+4. Em **SSL**:
 ![ssl](images/SSLProxyHost.png)
 
+Neste momento já deveria ser possível ligar-me a https://chaveman.duckdns.org, mas estava a obter um erro SSL no navegador. Usando o [Port Checker](https://portchecker.co/), percebi que o meu ISP estava a bloquear o tráfego de entrada na porta 443.
 
-At this point I should've been able to connect to https://chaveman.duckdns.org but i was getting
-an SSL error on the browser and using [Port Checker](https://portchecker.co/) I can see that my ISP is blocking inbound traffic for port 443.
+5. Aceder às configurações do router para encaminhar a porta 443 para o Raspberry Pi.
+6. Finalmente, posso me conectar a https://chaveman.duckdns.org e aceder ao Vaultwarden.
 
-5. Access my router configurations to port forward the 443 port to the rpi.
-6. Finally connect to [https://chaveman.duckdns.org](https://chaveman.duckdns.org) and access Vaultwarden.
+### Melhorar este projeto com um E-Paper Display
 
-
-### Enhancing Vaultwarden with an E-Paper Display
-
-1. Enabled SPI on my Raspberry Pi by running:
-``sudo raspi-config``
-2. Navigated to **Interfacing Options** > **SPI** > **Enable**
-3. After enabling SPI, I rebooted the system: ``sudo reboot``
-4. Installing the necessary Python libraries:
-```
+1. Ativar SPI no Raspberry Pi executando: ``sudo raspi-config``
+2. Navegar até **Interfacing Options** > **SPI** > **Enable**
+3. Após ativar o SPI, reiniciar o sistema: ``sudo reboot``
+4. Instalar as bibliotecas Python necessárias:
+```bash
 sudo apt-get update
 sudo apt-get install python3-pip python3-pil python3-numpy
 sudo apt-get install python3-spidev python3-rpi.gpio
 sudo apt-get install python3-psutil
 ```
-5. Cloned the [waveshareteam repo](https://github.com/waveshareteam/e-Paper/) and moved into the correct directory: 
-```
-git clone https://github.com/waveshare/e-Paper.git
+5. Clonei o [repositório da waveshareteam](https://github.com/waveshareteam/e-Paper/) e entrei na pasta correta:
+```bash
+git clone https://github.com/waveshareteam/e-Paper.git
 cd ~/e-Paper/RaspberryPi_JetsonNano/python
 ```
-6. For the Waveshare 2.13-inch v4 display, I used the ``epd2in13_V4`` module from ``../lib/waveshare_epd`` and tested it using ``../examples/epd2in13_V4_test.py``.
-From there, I built [system_monitor_v1](system_monitor_v1.txt) to display system info like temperature, uptime, and IP address.
+6. Para o meu e-paper Waveshare de 2.13 polegadas v4, utilizei o respectivo módulo **epd2in13_V4** de ``../lib/waveshare_epd`` e testei-o com ``../examples/epd2in13_V4_test.py``.
+A partir daí, construí o [system_monitor_v1](system_monitor_v1.txt) para exibir informações do sistema, como temperatura, tempo de atividade e endereço IP.
 
-![system_monitor](images/system_monitor.jpeg)
+![system_monitorv1](images/system_monitor.jpeg)
 
 outra possibilidade seria obter um dominio e cloudflare tunnel

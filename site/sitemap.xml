@@ -2,58 +2,78 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
         <loc>https://joaopef.github.io/theSTART/</loc>
-        <lastmod>2025-02-25</lastmod>
+        <lastmod>2025-03-26</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://joaopef.github.io/theSTART/"/>
         <xhtml:link rel="alternate" hreflang="pt" href="https://joaopef.github.io/theSTART/pt/"/>
     </url>
     <url>
+        <loc>https://joaopef.github.io/theSTART/AirMonitorCorr/</loc>
+        <lastmod>2025-03-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://joaopef.github.io/theSTART/AirMonitorCorr/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://joaopef.github.io/theSTART/pt/AirMonitorCorr/"/>
+    </url>
+    <url>
         <loc>https://joaopef.github.io/theSTART/HOW_IT_WORKS/</loc>
-        <lastmod>2025-02-25</lastmod>
+        <lastmod>2025-03-26</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://joaopef.github.io/theSTART/HOW_IT_WORKS/"/>
         <xhtml:link rel="alternate" hreflang="pt" href="https://joaopef.github.io/theSTART/pt/HOW_IT_WORKS/"/>
     </url>
     <url>
         <loc>https://joaopef.github.io/theSTART/Password%20Manager/</loc>
-        <lastmod>2025-02-25</lastmod>
+        <lastmod>2025-03-26</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://joaopef.github.io/theSTART/Password%20Manager/"/>
         <xhtml:link rel="alternate" hreflang="pt" href="https://joaopef.github.io/theSTART/pt/Password%20Manager/"/>
     </url>
     <url>
         <loc>https://joaopef.github.io/theSTART/PwnZilla%20Guia/</loc>
-        <lastmod>2025-02-25</lastmod>
+        <lastmod>2025-03-26</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://joaopef.github.io/theSTART/PwnZilla%20Guia/"/>
         <xhtml:link rel="alternate" hreflang="pt" href="https://joaopef.github.io/theSTART/pt/PwnZilla%20Guia/"/>
     </url>
     <url>
         <loc>https://joaopef.github.io/theSTART/pt/</loc>
-        <lastmod>2025-02-25</lastmod>
+        <lastmod>2025-03-26</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="pt" href="https://joaopef.github.io/theSTART/pt/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://joaopef.github.io/theSTART/"/>
     </url>
     <url>
+        <loc>https://joaopef.github.io/theSTART/pt/AirMonitorCorr/</loc>
+        <lastmod>2025-03-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://joaopef.github.io/theSTART/pt/AirMonitorCorr/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://joaopef.github.io/theSTART/AirMonitorCorr/"/>
+    </url>
+    <url>
         <loc>https://joaopef.github.io/theSTART/pt/HOW_IT_WORKS/</loc>
-        <lastmod>2025-02-25</lastmod>
+        <lastmod>2025-03-26</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="pt" href="https://joaopef.github.io/theSTART/pt/HOW_IT_WORKS/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://joaopef.github.io/theSTART/HOW_IT_WORKS/"/>
     </url>
     <url>
         <loc>https://joaopef.github.io/theSTART/pt/Password%20Manager/</loc>
-        <lastmod>2025-02-25</lastmod>
+        <lastmod>2025-03-26</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="pt" href="https://joaopef.github.io/theSTART/pt/Password%20Manager/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://joaopef.github.io/theSTART/Password%20Manager/"/>
     </url>
     <url>
         <loc>https://joaopef.github.io/theSTART/pt/PwnZilla%20Guia/</loc>
-        <lastmod>2025-02-25</lastmod>
+        <lastmod>2025-03-26</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="pt" href="https://joaopef.github.io/theSTART/pt/PwnZilla%20Guia/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://joaopef.github.io/theSTART/PwnZilla%20Guia/"/>
+    </url>
+    <url>
+        <loc>https://joaopef.github.io/theSTART/pt/AirMonitor/</loc>
+        <lastmod>2025-03-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://joaopef.github.io/theSTART/pt/AirMonitor/"/>
     </url>
 </urlset>

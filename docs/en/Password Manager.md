@@ -59,7 +59,7 @@ sudo docker run -d -p 9000:9000 --restart=always --name=portainer -v /var/run/do
 ```
 6. With the container running, opened then web browser and accessed the Portainer UI with: ``http://192.168.1.228:9000``.
 
-### Install and Set Up Vaultwarden RS (Vaultwarden) 
+### Install and Set Up Vaultwarden 
  
  After creating a Portainer account, I'll deploy and set up a self-hosted Vaultwarden server on the Pi.
 
@@ -69,7 +69,6 @@ sudo docker run -d -p 9000:9000 --restart=always --name=portainer -v /var/run/do
     - Name: Vaultwarden
     - Image: vaultwarden/server:1.32.0 (latest was not working) 
     - Map an additional port, forwarding 8080 on the host to 80 in the container.
-     This allows any device on the local network to access the Vaultwarden server via http://192.168.1.228:8080.
     - **Volumes** > **Map additional volume** with ``/data`` in the container field and the ``VaultwardenServer``volume created before
     - Under Restart Policy selected ``Always``
     - Finally, click **Deploy the container** and after a few minutes,
@@ -93,9 +92,9 @@ sudo docker run -d \
   jc21/nginx-proxy-manager:latest
 ```
 2. To check if the container starts successfully, I opened **Portainer** 
-and verified that the `nginx-proxy-manager` container was running.
- Another way would be to run:  `docker ps -a`. If the container wasn’t running,
-For troubleshooting:  ``docker logs nginx-proxy-manager``.
+and verified that the `nginx-proxy-manager` container was running. Another way would be to run:  `docker ps -a`.
+
+    If the container wasn’t running, check the logs troubleshooting with:  ``docker logs nginx-proxy-manager``.
 
 3. With the container up I can access the Nginx Proxy Manager web UI at
  ``http://192.168.1.228:81``.
@@ -116,6 +115,7 @@ This will allow me to access Vaultwarden securely from anywhere
  3. Copied my **DuckDNS Token** from the page (I'll need it later).
 
 #### Generate an SSL Certificate Using Let's Encrypt  
+
 1. Used **Certbot** with the **DNS-01 challenge** to obtain an SSL certificate
  for my DuckDNS domain:  
 Ran the following command to request a certificate using the **DNS-01 challenge**:  
@@ -127,7 +127,7 @@ sudo certbot certonly --manual --preferred-challenges dns -d chaveman.duckdns.or
 2. Certbot provided a TXT record that needs to be added to DNS for verification.
 Using DuckDNS's update URL:
 ``https://www.duckdns.org/update?domains=chaveman&token=MY_TOKEN&txt=TXTVALUE&verbose=true``
-i got an OK and this means DuckDNS set my TXT record.
+i got an **OK** and this means DuckDNS set my TXT record.
 3. To make sure that the TXT Record was Published waited a couple of minutes for
 DNS to propagate and using Google Admin Toolbox (Dig) I could see my
  TXT Value value under the ANSWER section so we're good to go.
@@ -149,8 +149,9 @@ Since the Web UI’s file explorer only shows local files, I had to copy the cer
 ```
 2. Returned to the **Nginx Proxy Manager Web UI** > **SSL Certificates** > 
 **Add SSL Certificate** > **Custom** and selected the cert files:
+![certificates](images/SSL_Certificate.png)
 3. **Add Proxy Host**:
-![addproxygoste](images/ProxyHost.png)
+![addproxyhost](images/ProxyHost.png)
 4. Under **SSL**:
 ![ssl](images/SSLProxyHost.png)
 

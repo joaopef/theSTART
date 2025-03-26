@@ -14,6 +14,8 @@
         <link rel="prev" href="../PwnZilla%20Guia/">
       
       
+        <link rel="next" href="../AirMonitorCorr/">
+      
       
       <link rel="icon" href="../images/lightning.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.3">
@@ -452,9 +454,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#install-and-set-up-vaultwarden-rs-vaultwarden" class="md-nav__link">
+  <a href="#install-and-set-up-vaultwarden" class="md-nav__link">
     <span class="md-ellipsis">
-      Install and Set Up Vaultwarden RS (Vaultwarden)
+      Install and Set Up Vaultwarden
     </span>
   </a>
   
@@ -529,6 +531,28 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AirMonitorCorr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Air Monitor
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -614,9 +638,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#install-and-set-up-vaultwarden-rs-vaultwarden" class="md-nav__link">
+  <a href="#install-and-set-up-vaultwarden" class="md-nav__link">
     <span class="md-ellipsis">
-      Install and Set Up Vaultwarden RS (Vaultwarden)
+      Install and Set Up Vaultwarden
     </span>
   </a>
   
@@ -758,7 +782,7 @@ Enable <strong>Set hostname</strong>, set up a <strong>username and password</st
 <ol>
 <li>With the container running, opened then web browser and accessed the Portainer UI with: <code>http://192.168.1.228:9000</code>.</li>
 </ol>
-<h3 id="install-and-set-up-vaultwarden-rs-vaultwarden">Install and Set Up Vaultwarden RS (Vaultwarden)<a class="headerlink" href="#install-and-set-up-vaultwarden-rs-vaultwarden" title="Permanent link">&para;</a></h3>
+<h3 id="install-and-set-up-vaultwarden">Install and Set Up Vaultwarden<a class="headerlink" href="#install-and-set-up-vaultwarden" title="Permanent link">&para;</a></h3>
 <p>After creating a Portainer account, I'll deploy and set up a self-hosted Vaultwarden server on the Pi.</p>
 <ol>
 <li>Click on <strong>Volume</strong> &gt; <strong>Add Volume</strong></li>
@@ -766,8 +790,7 @@ Enable <strong>Set hostname</strong>, set up a <strong>username and password</st
 <li><strong>Containers</strong> &gt; <strong>Add Container</strong> and did the following:<ul>
 <li>Name: Vaultwarden</li>
 <li>Image: vaultwarden/server:1.32.0 (latest was not working) </li>
-<li>Map an additional port, forwarding 8080 on the host to 80 in the container.
- This allows any device on the local network to access the Vaultwarden server via http://192.168.1.228:8080.</li>
+<li>Map an additional port, forwarding 8080 on the host to 80 in the container.</li>
 <li><strong>Volumes</strong> &gt; <strong>Map additional volume</strong> with <code>/data</code> in the container field and the <code>VaultwardenServer</code>volume created before</li>
 <li>Under Restart Policy selected <code>Always</code></li>
 <li>Finally, click <strong>Deploy the container</strong> and after a few minutes,
@@ -795,9 +818,8 @@ Enable <strong>Set hostname</strong>, set up a <strong>username and password</st
 <ol>
 <li>
 <p>To check if the container starts successfully, I opened <strong>Portainer</strong> 
-and verified that the <code>nginx-proxy-manager</code> container was running.
- Another way would be to run:  <code>docker ps -a</code>. If the container wasn’t running,
-For troubleshooting:  <code>docker logs nginx-proxy-manager</code>.</p>
+and verified that the <code>nginx-proxy-manager</code> container was running. Another way would be to run:  <code>docker ps -a</code>.</p>
+<p>If the container wasn’t running, check the logs troubleshooting with:  <code>docker logs nginx-proxy-manager</code>.</p>
 </li>
 <li>
 <p>With the container up I can access the Nginx Proxy Manager web UI at
@@ -831,7 +853,7 @@ sudo<span class="w"> </span>certbot<span class="w"> </span>certonly<span class="
 <li>Certbot provided a TXT record that needs to be added to DNS for verification.
 Using DuckDNS's update URL:
 <code>https://www.duckdns.org/update?domains=chaveman&amp;token=MY_TOKEN&amp;txt=TXTVALUE&amp;verbose=true</code>
-i got an OK and this means DuckDNS set my TXT record.</li>
+i got an <strong>OK</strong> and this means DuckDNS set my TXT record.</li>
 <li>To make sure that the TXT Record was Published waited a couple of minutes for
 DNS to propagate and using Google Admin Toolbox (Dig) I could see my
  TXT Value value under the ANSWER section so we're good to go.</li>
@@ -852,9 +874,10 @@ to open the crontab file with NANO and added the cron job <code>0 0 * * * certbo
 
 <ol>
 <li>Returned to the <strong>Nginx Proxy Manager Web UI</strong> &gt; <strong>SSL Certificates</strong> &gt; 
-<strong>Add SSL Certificate</strong> &gt; <strong>Custom</strong> and selected the cert files:</li>
+<strong>Add SSL Certificate</strong> &gt; <strong>Custom</strong> and selected the cert files:
+<img alt="certificates" src="../images/SSL_Certificate.png" /></li>
 <li><strong>Add Proxy Host</strong>:
-<img alt="addproxygoste" src="../images/ProxyHost.png" /></li>
+<img alt="addproxyhost" src="../images/ProxyHost.png" /></li>
 <li>Under <strong>SSL</strong>:
 <img alt="ssl" src="../images/SSLProxyHost.png" /></li>
 </ol>
