@@ -1,0 +1,1210 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://joaopef.github.io/theSTART/AirMonitorCorr/">
+      
+      
+        <link rel="prev" href="../Password%20Manager/">
+      
+      
+      
+      <link rel="icon" href="../images/lightning.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.3">
+    
+    
+      
+        <title>Air Monitor - theSTART</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.d7758b05.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../styles.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sensor-de-monitorizacao-do-ar-para-casa" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="theSTART" class="md-header__button md-logo" aria-label="theSTART" data-md-component="logo">
+      
+  <img src="../images/lightning.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            theSTART
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Air Monitor
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../pt/AirMonitorCorr/" hreflang="pt" class="md-select__link">
+              Português (PT)
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="theSTART" class="md-nav__button md-logo" aria-label="theSTART" data-md-component="logo">
+      
+  <img src="../images/lightning.svg" alt="logo">
+
+    </a>
+    theSTART
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PwnZilla%20Guia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pwnzilla
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1HOW_IT_WORKS.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pwnzilla INFO
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Password%20Manager/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Self-Hosted Password Manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Air Monitor
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Air Monitor
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#parametros-mais-importantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parâmetros Mais Importantes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parâmetros Mais Importantes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#temperatura-e-humidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Temperatura e Humidade
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#co2-dioxido-de-carbono" class="md-nav__link">
+    <span class="md-ellipsis">
+      CO2 (Dióxido de Carbono)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#particulate-matter-pm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Particulate Matter (PM)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configurar-o-esp32-c6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurar o ESP32-C6
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configurar o ESP32-C6">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-instalar-o-esptool" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Instalar o esptool
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-ligar-o-esp32-c6-ao-pc" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Ligar o ESP32-C6 ao PC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-instalar-os-drivers-usb-to-uart" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Instalar os drivers USB to UART
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-limpar-a-flash-do-esp32-c6" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Limpar a flash do ESP32-C6
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-instalar-o-esp-idf" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Instalar o ESP-IDF
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-testar-com-hello-world" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Testar com Hello World
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ligacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ligações
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuração de Dados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuração de Dados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-instalar-e-configurar-o-influxdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Instalar e configurar o InfluxDB
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-instalar-e-configurar-o-mosquitto-mqtt-broker" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Instalar e configurar o Mosquitto MQTT Broker
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Instalar e configurar o Mosquitto MQTT Broker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testar-a-comunicacao-mqtt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testar a comunicação MQTT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-instalar-e-configurar-o-telegraf" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Instalar e configurar o Telegraf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-configurar-o-telegraf-para-consumir-mqtt" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Configurar o Telegraf para consumir MQTT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-testar-a-configuracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Testar a configuração
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-visualizar-os-dados-no-influxdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Visualizar os dados no InfluxDB
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#parametros-mais-importantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parâmetros Mais Importantes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parâmetros Mais Importantes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#temperatura-e-humidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Temperatura e Humidade
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#co2-dioxido-de-carbono" class="md-nav__link">
+    <span class="md-ellipsis">
+      CO2 (Dióxido de Carbono)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#particulate-matter-pm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Particulate Matter (PM)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configurar-o-esp32-c6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurar o ESP32-C6
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configurar o ESP32-C6">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-instalar-o-esptool" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Instalar o esptool
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-ligar-o-esp32-c6-ao-pc" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Ligar o ESP32-C6 ao PC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-instalar-os-drivers-usb-to-uart" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Instalar os drivers USB to UART
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-limpar-a-flash-do-esp32-c6" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Limpar a flash do ESP32-C6
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-instalar-o-esp-idf" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Instalar o ESP-IDF
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-testar-com-hello-world" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Testar com Hello World
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ligacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ligações
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuração de Dados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuração de Dados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-instalar-e-configurar-o-influxdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Instalar e configurar o InfluxDB
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-instalar-e-configurar-o-mosquitto-mqtt-broker" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Instalar e configurar o Mosquitto MQTT Broker
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Instalar e configurar o Mosquitto MQTT Broker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testar-a-comunicacao-mqtt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testar a comunicação MQTT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-instalar-e-configurar-o-telegraf" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Instalar e configurar o Telegraf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-configurar-o-telegraf-para-consumir-mqtt" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Configurar o Telegraf para consumir MQTT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-testar-a-configuracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Testar a configuração
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-visualizar-os-dados-no-influxdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Visualizar os dados no InfluxDB
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="sensor-de-monitorizacao-do-ar-para-casa">Sensor de Monitorização do Ar para Casa<a class="headerlink" href="#sensor-de-monitorizacao-do-ar-para-casa" title="Permanent link">&para;</a></h1>
+<p>Uma das poucas lições positivas que a pandemia de Covid-19 nos deixou foi a perceção de que existem riscos invisíveis à nossa saúde dentro dos espaços fechados. Muitos poluentes e substâncias contaminantes estão presentes nos ambientes interiores sem que os nossos sentidos – como o olfato, o paladar ou a visão – nos possam alertar para o perigo.</p>
+<p>É aqui que entram os monitores de qualidade do ar interior (IAQ). Estes dispositivos detetam a presença de poluentes e fornecem dados objetivos sobre os níveis de contaminação, permitindo-nos agir antes que se tornem um risco real. Quanto mais informação tivermos, mais conscientes e eficazes serão as nossas decisões para manter um ambiente saudável e seguro.</p>
+<h2 id="parametros-mais-importantes">Parâmetros Mais Importantes<a class="headerlink" href="#parametros-mais-importantes" title="Permanent link">&para;</a></h2>
+<p>Há vários parâmetros que convém medir, mas os principais são:</p>
+<h3 id="temperatura-e-humidade"><strong>Temperatura e Humidade</strong><a class="headerlink" href="#temperatura-e-humidade" title="Permanent link">&para;</a></h3>
+<p>Conhecer os valores de temperatura e humidade de um espaço ajuda a
+identificar condições que favorecem o crescimento de bactérias e bolor.
+Ambientes muito húmidos aumentam esse risco. Alguns dispositivos também calculam o ponto de orvalho – a temperatura na qual o ar já não consegue reter mais vapor de água, levando à condensação.</p>
+<h3 id="co2-dioxido-de-carbono"><strong>CO2 (Dióxido de Carbono)</strong><a class="headerlink" href="#co2-dioxido-de-carbono" title="Permanent link">&para;</a></h3>
+<p>O CO2 é um composto químico que os humanos libertam ao respirar. Níveis elevados podem causar fadiga, falta de concentração e redução da produtividade. Monitorizar os níveis de CO2 permite avaliar a qualidade da ventilação de um espaço e saber quando é necessário arejar.</p>
+<h3 id="particulate-matter-pm"><strong>Particulate Matter (PM)</strong><a class="headerlink" href="#particulate-matter-pm" title="Permanent link">&para;</a></h3>
+<p>As partículas em suspensão (PM) são uma mistura de partículas sólidas e líquidas tão pequenas que podem ser inaladas, afetando a saúde respiratória. São originadas por poeira, fumo, poluição, entre outros.  </p>
+<ul>
+<li><strong>PM10</strong> – Partículas com diâmetro inferior a 10 micrómetros.  </li>
+<li><strong>PM2.5</strong> – Partículas com diâmetro inferior a 2.5 micrómetros, consideradas as mais perigosas para a saúde.  </li>
+</ul>
+<p>Para comparação, um fio de cabelo humano tem aproximadamente 70 micrómetros de diâmetro.</p>
+<h2 id="hardware">Hardware<a class="headerlink" href="#hardware" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>ESP32C6</strong> - Dispositivo central responsável pela recolha e transmissão de dados via <strong>WiFi 6</strong> e <strong>Bluetooth 5</strong>, garantindo uma comunicação eficiente com os sensores.  </p>
+</li>
+<li>
+<p><strong>SHT41</strong> - Sensor de <strong>temperatura e humidade</strong> com maior precisão do que os comuns <strong>DHT11</strong> e <strong>DHT22</strong>. Comunica via <strong>I2C</strong> e permite medições de temperatura entre <strong>-40°C e 125°C</strong> e de humidade entre <strong>0% e 100%</strong>.  </p>
+</li>
+<li>
+<p><strong>Senseair S8</strong> - Sensor de <strong>CO2</strong> do tipo <strong>NDIR (Non-Dispersive Infrared)</strong>, garantindo medições mais estáveis e precisas do que sensores <strong>MOX</strong>. Mede concentrações de <strong>CO2 entre 400 e 5000 ppm</strong>, com uma precisão de <strong>±40 ppm + 3% da leitura</strong>. Comunica via <strong>UART</strong>.  </p>
+</li>
+<li>
+<p><strong>Plantower PMS2.5</strong> - Sensor de <strong>partículas em suspensão (PM)</strong>, capaz de medir <strong>PM1.0, PM2.5 e PM10</strong>. Permite identificar partículas com diâmetros mínimos de <strong>0.3 µm</strong>, sendo útil para monitorizar poeira, fumo e poluição urbana. Comunica via <strong>UART</strong>.  </p>
+</li>
+</ul>
+<h2 id="implementacao">Implementação<a class="headerlink" href="#implementacao" title="Permanent link">&para;</a></h2>
+<p>Para não seguir o caminho tradicional com <strong>Arduino IDE</strong> e experimentar algo novo, decidi utilizar <strong>ESP IDF</strong>. É uma opção mais flexível, permitindo testar rapidamente os sensores sem complicação.  </p>
+<h3 id="configurar-o-esp32-c6"><strong>Configurar o ESP32-C6</strong><a class="headerlink" href="#configurar-o-esp32-c6" title="Permanent link">&para;</a></h3>
+<p>O ESP32-C6 vem sem <strong>ESP IDF</strong> instalado, então é necessário <strong>flashar o firmware</strong> antes de começar.  </p>
+<h4 id="1-instalar-o-esptool"><strong>1. Instalar o esptool</strong><a class="headerlink" href="#1-instalar-o-esptool" title="Permanent link">&para;</a></h4>
+<p>Antes de tudo, precisamos do <strong>esptool</strong>, que serve para interagir com microcontroladores ESP. Como já tenho <strong>Python</strong> instalado, basta abrir o <strong>cmd</strong> e executar:<br />
+<code>pip install esptool</code></p>
+<h4 id="2-ligar-o-esp32-c6-ao-pc"><strong>2. Ligar o ESP32-C6 ao PC</strong><a class="headerlink" href="#2-ligar-o-esp32-c6-ao-pc" title="Permanent link">&para;</a></h4>
+<p>A parte mais complicada... conectar o ESP32-C6 ao PC usando um <strong>cabo USB-C para USB-A</strong> 😆.  </p>
+<h4 id="3-instalar-os-drivers-usb-to-uart"><strong>3. Instalar os drivers USB to UART</strong><a class="headerlink" href="#3-instalar-os-drivers-usb-to-uart" title="Permanent link">&para;</a></h4>
+<p>Para que o ESP32-C6 seja reconhecido corretamente, precisamos dos <strong>USB to UART Bridge VCP Drivers</strong>.  </p>
+<ul>
+<li>O download pode ser feito diretamente em <a href="https://www.silabs.com/developer-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads">Silicon Labs</a>.  </li>
+<li>Após o download, extrair os ficheiros e localizar <strong><code>silabser.inf</code></strong>.  </li>
+<li>Clicar com o <strong>botão direito</strong> e selecionar <strong>Instalar</strong>.  </li>
+</ul>
+<p>Agora, no <strong>Device Manager</strong>, o dispositivo deve aparecer como <strong>Silicon Labs CP210x USB to UART Bridge (COMx)</strong>.<br />
+Tomar nota do número da porta COM atribuída (no meu caso, <strong>COM3</strong>).  </p>
+<h4 id="4-limpar-a-flash-do-esp32-c6"><strong>4. Limpar a flash do ESP32-C6</strong><a class="headerlink" href="#4-limpar-a-flash-do-esp32-c6" title="Permanent link">&para;</a></h4>
+<p>Antes de instalar o firmware, convém limpar a memória do ESP para evitar problemas. No terminal, correr:  <code>python -m esptool --port COM3 erase_flash</code></p>
+<p>Se tudo correr bem, deve aparecer a mensagem: <strong>Chip erase completed successfully</strong>.</p>
+<h4 id="5-instalar-o-esp-idf"><strong>5. Instalar o ESP-IDF</strong><a class="headerlink" href="#5-instalar-o-esp-idf" title="Permanent link">&para;</a></h4>
+<p>Podemos fazer download da versão mais recente para <strong>Windows</strong> do <a href="https://idf.espressif.com/"><strong>ESP-IDF</strong></a> para o ESP32-C6 neste <a href="https://docs.espressif.com/projects/esp-idf/en/stable/esp32c6/get-started/windows-setup.html">link</a>.  </p>
+<p>Durante o processo de instalação, selecionei a opção de criar <strong>atalhos no ambiente de trabalho</strong>, facilitando o acesso ao <strong>ESP-IDF Command Prompt</strong> e ao <strong>IDE</strong>.  </p>
+<h4 id="6-testar-com-hello-world"><strong>6. Testar com Hello World</strong><a class="headerlink" href="#6-testar-com-hello-world" title="Permanent link">&para;</a></h4>
+<p>Depois de instalado, podemos verificar se tudo está a funcionar corretamente com um pequeno teste:  </p>
+<ul>
+<li>Abir o ESP-IDF CMD e navegar até ao exemplo já incluído de <strong>Hello World</strong>:<br />
+<code>cd %IDF_PATH%\examples\get-started\hello_world</code></li>
+<li>Definir o <strong>target</strong> para a nossa board ESP32-C6:<br />
+<code>idf.py set-target esp32c6</code></li>
+<li>Fazer <strong>build</strong> do firmware:<br />
+<code>idf.py build</code></li>
+<li>Flashar o firmware para a board:<br />
+<code>idf.py -p COM3 flash</code></li>
+<li>Confirmar que está a imprimir <strong>Hello World</strong>, visualizando o output do <strong>serial monitor</strong>:<br />
+<code>idf.py -p COM3 monitor</code></li>
+</ul>
+<hr />
+<h3 id="ligacoes"><strong>Ligações</strong><a class="headerlink" href="#ligacoes" title="Permanent link">&para;</a></h3>
+<p>Como referência para as ligações, utilizo esta imagem da <strong>board</strong> que estou a usar:<br />
+<img alt="ssl" src="../images/ESP32-C6.png" />  </p>
+<p>Conforme mencionado na secção de <strong>hardware</strong>, os sensores comunicam da seguinte forma:<br />
+- <strong>Senseair S8</strong> e <strong>Plantower PMS2.5</strong> → UART<br />
+- <strong>SHT41</strong> → I2C  </p>
+<hr />
+<h2 id="configuracao-de-dados"><strong>Configuração de Dados</strong><a class="headerlink" href="#configuracao-de-dados" title="Permanent link">&para;</a></h2>
+<p>Para armazenar e visualizar os dados dos sensores, utilizei o <strong>InfluxDB</strong>, o <strong>Mosquitto MQTT Broker</strong> e o <strong>Telegraf</strong> para integrar os serviços.  </p>
+<h3 id="1-instalar-e-configurar-o-influxdb"><strong>1. Instalar e configurar o InfluxDB</strong><a class="headerlink" href="#1-instalar-e-configurar-o-influxdb" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Fazer <strong>download</strong> da versão mais recente do <strong>InfluxDB v2</strong> no <a href="https://www.influxdata.com/">site oficial</a>.  </li>
+<li>Abrir o <strong>PowerShell</strong> em modo <strong>Administrador</strong> e navegar até a pasta de <strong>Downloads</strong>.  </li>
+<li>Executar o seguinte comando para extrair os ficheiros:  </li>
+</ol>
+<div class="codehilite"><pre><span></span><code>Expand-Archive .\influxdb2-2.7.11-windows.zip -DestinationPath &#39;C:\Program Files\InfluxData&#39;
+</code></pre></div>
+
+<ol>
+<li>Clicar com o <strong>botão direito</strong> no <strong>.exe</strong>, copiar o <strong>caminho completo</strong> e abrir o <strong>CMD</strong>.  </li>
+<li>Colar o <strong>caminho</strong> copiado e pressionar <strong>Enter</strong>.  </li>
+</ol>
+<p>O <strong>WebUI</strong> do <strong>InfluxDB</strong> deve abrir em <code>http://localhost:8086</code>.<br />
+Criar uma conta e seguir as instruções iniciais.  </p>
+<hr />
+<h3 id="2-instalar-e-configurar-o-mosquitto-mqtt-broker"><strong>2. Instalar e configurar o Mosquitto MQTT Broker</strong><a class="headerlink" href="#2-instalar-e-configurar-o-mosquitto-mqtt-broker" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Fazer <strong>download</strong> do <strong>Mosquitto</strong> no <a href="https://mosquitto.org/download/">site oficial</a>.  </li>
+<li>Após a instalação, abrir o <strong>CMD</strong>, navegar até a pasta de instalação e iniciar o serviço com:  <code>mosquitto</code></li>
+</ol>
+<h4 id="testar-a-comunicacao-mqtt"><strong>Testar a comunicação MQTT</strong><a class="headerlink" href="#testar-a-comunicacao-mqtt" title="Permanent link">&para;</a></h4>
+<p>Abrir dois <strong>CMDs</strong>:  </p>
+<ul>
+<li><strong>CMD 1</strong> (para subscrever a um tópico):  </li>
+</ul>
+<div class="codehilite"><pre><span></span><code>&quot;C:\Program Files\mosquitto\mosquitto_sub.exe&quot; -h 127.0.0.1 -t test/topic
+</code></pre></div>
+
+<ul>
+<li><strong>CMD 2</strong> (para publicar uma mensagem no tópico):  </li>
+</ul>
+<div class="codehilite"><pre><span></span><code>&quot;C:\Program Files\mosquitto\mosquitto_pub.exe&quot; -h 127.0.0.1 -t test/topic -m &quot;Hello from Mosquitto&quot;
+</code></pre></div>
+
+<p>Se a mensagem <strong>"Hello from Mosquitto"</strong> aparecer no primeiro terminal, a comunicação MQTT está a funcionar corretamente.  </p>
+<p>Agora, precisamos de conectar o <strong>Mosquitto</strong> ao <strong>InfluxDB</strong> através do <strong>Telegraf</strong> e do <strong>MQTT Consumer</strong>.  </p>
+<hr />
+<h3 id="3-instalar-e-configurar-o-telegraf"><strong>3. Instalar e configurar o Telegraf</strong><a class="headerlink" href="#3-instalar-e-configurar-o-telegraf" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Fazer <strong>download</strong> do <strong>Telegraf</strong> no <a href="https://www.influxdata.com/time-series-platform/telegraf/">site oficial</a>.  </li>
+<li>No <strong>PowerShell</strong> (modo Administrador), executar:  </li>
+</ol>
+<div class="codehilite"><pre><span></span><code>wget https://dl.influxdata.com/telegraf/releases/telegraf-1.34.0_windows_amd64.zip -UseBasicParsing -OutFile telegraf-1.34.0_windows_amd64.zip
+</code></pre></div>
+
+<ol>
+<li>Após o <strong>download</strong>, extrair os ficheiros:  </li>
+</ol>
+<div class="codehilite"><pre><span></span><code>Expand-Archive .\telegraf-1.34.0_windows_amd64.zip -DestinationPath &#39;C:\Program Files\InfluxData\telegraf&#39;
+</code></pre></div>
+
+<hr />
+<h3 id="4-configurar-o-telegraf-para-consumir-mqtt"><strong>4. Configurar o Telegraf para consumir MQTT</strong><a class="headerlink" href="#4-configurar-o-telegraf-para-consumir-mqtt" title="Permanent link">&para;</a></h3>
+<ol>
+<li>No <strong>WebUI</strong> do InfluxDB, criar um <strong>Telegraf Configuration File</strong>:  </li>
+<li>Escolher o <strong>bucket Sensores</strong>.  </li>
+<li>Selecionar o <strong>plugin MQTT Consumer</strong> na <strong>Plugin Library</strong>.  </li>
+<li>Adicionar os seguintes <strong>inputs</strong>:  </li>
+</ol>
+<div class="codehilite"><pre><span></span><code>[[inputs.mqtt_consumer]] servers = [&quot;tcp://127.0.0.1:1883&quot;] topics = [ &quot;sensores/sht41/temperature&quot;, &quot;sensores/sht41/humidity&quot;, &quot;sensores/gcja5/pm1&quot;, &quot;sensores/gcja5/pm2.5&quot;, &quot;sensores/gcja5/pm10&quot;, &quot;sensores/sensair_s8/co2&quot; ] data_format = &quot;influx&quot;
+</code></pre></div>
+
+<ol>
+<li>Adicionar o <strong>Token de Autenticação</strong> conforme indicado no WebUI.  </li>
+</ol>
+<hr />
+<h3 id="5-testar-a-configuracao"><strong>5. Testar a configuração</strong><a class="headerlink" href="#5-testar-a-configuracao" title="Permanent link">&para;</a></h3>
+<p>Abrir dois <strong>CMDs</strong>:  </p>
+<ul>
+<li><strong>CMD 1</strong> (para monitorizar os dados recebidos pelo Telegraf):  </li>
+</ul>
+<div class="codehilite"><pre><span></span><code>telegraf --config http://localhost:8086/api/v2/telegrafs/0e96aec27fc2a000 --debug
+</code></pre></div>
+
+<ul>
+<li><strong>CMD 2</strong> (para enviar dados de teste via Mosquitto):  </li>
+</ul>
+<div class="codehilite"><pre><span></span><code>mosquitto_pub -h 127.0.0.1 -t sensores/sht41/temperature -m &quot;temperature,location=office value=25.3&quot;
+</code></pre></div>
+
+<p>Se tudo estiver configurado corretamente, o terminal deve exibir a mensagem de sucesso:  </p>
+<p><strong>[outputs.influxdb_v2] Wrote batch of 1 metrics in 5.0302ms</strong></p>
+<hr />
+<h3 id="6-visualizar-os-dados-no-influxdb"><strong>6. Visualizar os dados no InfluxDB</strong><a class="headerlink" href="#6-visualizar-os-dados-no-influxdb" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Aceder ao <strong>WebUI</strong> do <strong>InfluxDB</strong>.  </li>
+<li>Ir a <strong>Data Explorer</strong> e abrir o <strong>Script Editor</strong>.  </li>
+<li>Executar a seguinte <strong>query</strong> para visualizar os dados:  </li>
+</ol>
+<div class="codehilite"><pre><span></span><code>from(bucket: &quot;Sensores&quot;) |&gt; range(start: -1h) |&gt; filter(fn: (r) =&gt; r._measurement == &quot;temperature&quot; or r._measurement == &quot;humidity&quot;)
+</code></pre></div>
+
+<p>Os valores dos sensores devem aparecer no gráfico.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2025 <a href='https://github.com/joaopef/' target='_blank' rel='noopener'>João Ferreira</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/joaopef/" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/joaopefer/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["header.autohide", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>
