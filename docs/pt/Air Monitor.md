@@ -51,7 +51,7 @@ Para comparação, um fio de cabelo humano tem aproximadamente 70 micrómetros d
 
 Para não seguir o caminho tradicional com **Arduino IDE** e experimentar algo novo, decidi utilizar **ESP IDF**. É uma opção mais flexível, permitindo testar rapidamente os sensores sem complicação.  
 
-<details>
+<details markdown="1">
 <summary><strong>Clique aqui para ver o guia técnico detalhado de configuração do ambiente</strong></summary>
 
 

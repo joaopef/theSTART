@@ -41,6 +41,10 @@ Para comparação, um fio de cabelo humano tem aproximadamente 70 micrómetros d
 
 Para não seguir o caminho tradicional com **Arduino IDE** e experimentar algo novo, decidi utilizar **ESP IDF**. É uma opção mais flexível, permitindo testar rapidamente os sensores sem complicação.  
 
+<details markdown="1">
+<summary><strong>Clique aqui para ver o guia técnico detalhado de configuração do ambiente</strong></summary>
+
+
 ### **Configurar o ESP32-C6**  
 
 O ESP32-C6 vem sem **ESP IDF** instalado, então é necessário **flashar o firmware** antes de começar.  
@@ -213,5 +217,9 @@ from(bucket: "Sensores") |> range(start: -1h) |> filter(fn: (r) => r._measuremen
 ````
 
 Os valores dos sensores devem aparecer no gráfico.
+
+
+<details>
+
 
 🚧 **Work in Progress** 🚧

@@ -59,6 +59,7 @@ plugins:
           name: Português (PT)
           build: true
           link: /pt/
+      default_language: en
 
 
 
