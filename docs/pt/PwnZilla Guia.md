@@ -29,3 +29,5 @@ If you’re looking for a deeper explanation of how the Pwnagotchi works, feel f
 **Raspberry Pi Imager**
 
 ## Configurations
+
+🚧 **Writting in Progress** 🚧

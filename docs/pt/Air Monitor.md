@@ -33,13 +33,26 @@ Para comparação, um fio de cabelo humano tem aproximadamente 70 micrómetros d
 
 - **SHT41** - Sensor de **temperatura e humidade** com maior precisão do que os comuns **DHT11** e **DHT22**. Comunica via **I2C** e permite medições de temperatura entre **-40°C e 125°C** e de humidade entre **0% e 100%**.  
 
-- **Senseair S8** - Sensor de **CO2** do tipo **NDIR (Non-Dispersive Infrared)**, garantindo medições mais estáveis e precisas do que sensores **MOX**. Mede concentrações de **CO2 entre 400 e 5000 ppm**, com uma precisão de **±40 ppm + 3% da leitura**. Comunica via **UART**.  
+- **Senseair S8** – Sensor de **CO₂** do tipo **NDIR (Non-Dispersive Infrared)**. Mede concentrações entre **400 e 5000 ppm**, com uma precisão de **±40 ppm + 3% da leitura**, comunicando via **UART**.  
+
+    Possui um sistema de **ABC (Automatic Baseline Correction)** ativo por padrão, que torna o sensor praticamente **livre de manutenção** em ambientes normais. Este algoritmo realiza uma **correção automática de deriva** ao longo do tempo, assumindo que o sensor será exposto periodicamente a ar fresco com uma concentração de **400 ppm de CO₂**.  
+
+    O ciclo padrão de correção ocorre a cada **15 dias** de operação contínua, é aconselhado deixar o sensor ativo por pelo menos **25 dias** para garantir que estou a receber medições precisas.
 
 - **Plantower PMS2.5** - Sensor de **partículas em suspensão (PM)**, capaz de medir **PM1.0, PM2.5 e PM10**. Permite identificar partículas com diâmetros mínimos de **0.3 µm**, sendo útil para monitorizar poeira, fumo e poluição urbana. Comunica via **UART**.  
+
+- **Panasonic SN-GCJA5** – Sensor de partículas **Laser-based** de alta precisão, usado para medir **PM1.0**, **PM2.5** e **PM10** (Particulate Matter). Baseia-se no **princípio de dispersão de luz** (light scattering) usando um **laser interno** e um fotodiodo sensível para detetar partículas suspensas no ar.  
+
+    Possui uma **ventoinha interna** que garante fluxo de ar constante através da câmara de medição, o que melhora a fiabilidade das leituras. A comunicação é feita via **UART** ou **I2C**.  
+
+    O sensor tem uma elevada sensibilidade, sendo capaz de detetar partículas com diâmetros **inferiores a 1 µm**. As leituras são fornecidas em **μg/m³**. 
 
 ## Implementação  
 
 Para não seguir o caminho tradicional com **Arduino IDE** e experimentar algo novo, decidi utilizar **ESP IDF**. É uma opção mais flexível, permitindo testar rapidamente os sensores sem complicação.  
+
+<details>
+<summary><strong>Clique aqui para ver o guia técnico detalhado de configuração do ambiente</strong></summary>
 
 ### **Configurar o ESP32-C6**  
 
@@ -212,5 +225,9 @@ Se tudo estiver configurado corretamente, o terminal deve exibir a mensagem de s
 from(bucket: "Sensores") |> range(start: -1h) |> filter(fn: (r) => r._measurement == "temperature" or r._measurement == "humidity")
 ````
 
-Os valores dos sensores devem aparecer no gráfico.
+Os valores dos sensores aparecem no gráfico como desejado.
+
+</details>
+
+🚧 **Work in Progress** 🚧
 

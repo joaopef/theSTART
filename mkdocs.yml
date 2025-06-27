@@ -7,7 +7,7 @@ nav:
       - Pwnzilla: PwnZilla Guia.md
       - Pwnzilla INFO: 1HOW_IT_WORKS.md
       - Self-Hosted Password Manager: Password Manager.md
-      - Air Monitor: AirMonitorCorr.md
+      - Air Monitor: Air Monitor.md
 
 theme:
   name: material

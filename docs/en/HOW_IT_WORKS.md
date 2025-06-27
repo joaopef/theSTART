@@ -56,3 +56,4 @@ Of course, it IS possible to run your Pwnagotchi with the AI disabled (configura
 - **WebUI**: A **web user interface** that allows you to interact with Pwnagotchi through a browser for easier management and monitoring.
 
 
+🚧 **Work in Progress** 🚧

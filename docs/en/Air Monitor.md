@@ -98,7 +98,7 @@ idf.py -p COM3 flash
 idf.py -p COM3 monitor
 ``
 ---
-### **Ligações**
+## **Ligações**
  
 
 Como referência para as ligações, utilizo esta imagem da **board** que estou a usar:  
@@ -214,3 +214,4 @@ from(bucket: "Sensores") |> range(start: -1h) |> filter(fn: (r) => r._measuremen
 
 Os valores dos sensores devem aparecer no gráfico.
 
+🚧 **Work in Progress** 🚧
