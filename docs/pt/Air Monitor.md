@@ -54,15 +54,16 @@ Para não seguir o caminho tradicional com **Arduino IDE** e experimentar algo n
 <details>
 <summary><strong>Clique aqui para ver o guia técnico detalhado de configuração do ambiente</strong></summary>
 
+
 ### **Configurar o ESP32-C6**  
 
 O ESP32-C6 vem sem **ESP IDF** instalado, então é necessário **flashar o firmware** antes de começar.  
 
 #### **1. Instalar o esptool**  
 Antes de tudo, precisamos do **esptool**, que serve para interagir com microcontroladores ESP. Como já tenho **Python** instalado, basta abrir o **cmd** e executar:  
-``
+```
 pip install esptool
-``
+```
 
 #### **2. Ligar o ESP32-C6 ao PC**  
 A parte mais complicada... conectar o ESP32-C6 ao PC usando um **cabo USB-C para USB-A** 😆.  
@@ -227,7 +228,9 @@ from(bucket: "Sensores") |> range(start: -1h) |> filter(fn: (r) => r._measuremen
 
 Os valores dos sensores aparecem no gráfico como desejado.
 
+
 </details>
+
 
 🚧 **Work in Progress** 🚧
 
