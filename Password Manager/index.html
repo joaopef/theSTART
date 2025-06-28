@@ -765,21 +765,17 @@ Enable <strong>Set hostname</strong>, set up a <strong>username and password</st
 </ol>
 <h2 id="on-the-terminal">On the terminal<a class="headerlink" href="#on-the-terminal" title="Permanent link">&para;</a></h2>
 <p>To make sure everything runs smoothly, I started by updating and upgrading the software packages:</p>
-<div class="codehilite"><pre><span></span><code>sudo apt update &amp;&amp; sudo apt full-upgrade -y
+<div class="highlight"><pre><span></span><code>sudo apt update &amp;&amp; sudo apt full-upgrade -y
 </code></pre></div>
-
 <h3 id="install-docker-and-portainer">Install Docker and Portainer<a class="headerlink" href="#install-docker-and-portainer" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Install <a href="https://docs.docker.com/desktop/setup/install/linux/">Docker</a>: <code>curl -sSL https://get.docker.com | sh</code></li>
 <li>Grant Docker permissions to my user (joaof): <code>sudo usermod -aG docker joaof</code></li>
 <li>Rebooted the system for changes to take effect.: <code>sudo reboot</code></li>
 <li>Although Docker containers can be managed via the command line, Portainer provides a user-friendly GUI interface for deploying and managing our Docker containers on Raspberry Pi. To pull the latest version of Portainer from Docker Hub: <code>sudo docker pull portainer/portainer-ce:latest</code></li>
-<li>Creating and running a Portainer container. This command exposes the Portainer web interface on port 9000 and ensures Portainer is always restarted if the system reboots.</li>
-</ol>
-<div class="codehilite"><pre><span></span><code>sudo docker run -d -p 9000:9000 --restart=always --name=portainer -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
-</code></pre></div>
-
-<ol>
+<li>Creating and running a Portainer container. This command exposes the Portainer web interface on port 9000 and ensures Portainer is always restarted if the system reboots.
+<div class="highlight"><pre><span></span><code>sudo docker run -d -p 9000:9000 --restart=always --name=portainer -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+</code></pre></div></li>
 <li>With the container running, opened then web browser and accessed the Portainer UI with: <code>http://192.168.1.228:9000</code>.</li>
 </ol>
 <h3 id="install-and-set-up-vaultwarden">Install and Set Up Vaultwarden<a class="headerlink" href="#install-and-set-up-vaultwarden" title="Permanent link">&para;</a></h3>
@@ -802,9 +798,8 @@ Enable <strong>Set hostname</strong>, set up a <strong>username and password</st
 <h3 id="set-up-the-reverse-proxy">Set Up the reverse proxy<a class="headerlink" href="#set-up-the-reverse-proxy" title="Permanent link">&para;</a></h3>
 <p>To access and use Vaultwarden, I need to set up a reverse proxy. For this I'll be using <a href="https://nginxproxymanager.com/">Nginx Proxy Manager</a>.</p>
 <ol>
-<li>Ran the following command to pull the latest nginx image and start the container:</li>
-</ol>
-<div class="codehilite"><pre><span></span><code>sudo docker run -d \
+<li>Ran the following command to pull the latest nginx image and start the container:
+<div class="highlight"><pre><span></span><code>sudo docker run -d \
   --name=nginx-proxy-manager \
   -p 81:81 \
   -p 80:80 \
@@ -813,9 +808,7 @@ Enable <strong>Set hostname</strong>, set up a <strong>username and password</st
   -v /srv/dev-disk-by-label-Backup/Docker/nginx-proxy-manager/letsencrypt:/etc/letsencrypt \
   --restart unless-stopped \
   jc21/nginx-proxy-manager:latest
-</code></pre></div>
-
-<ol>
+</code></pre></div></li>
 <li>
 <p>To check if the container starts successfully, I opened <strong>Portainer</strong> 
 and verified that the <code>nginx-proxy-manager</code> container was running. Another way would be to run:  <code>docker ps -a</code>.</p>
@@ -845,34 +838,28 @@ and verified that the <code>nginx-proxy-manager</code> container was running. An
  for my DuckDNS domain:<br />
 Ran the following command to request a certificate using the <strong>DNS-01 challenge</strong>:  </li>
 </ol>
-<div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>certbot<span class="w"> </span>-y
+<p><div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>certbot<span class="w"> </span>-y
 sudo<span class="w"> </span>certbot<span class="w"> </span>certonly<span class="w"> </span>--manual<span class="w"> </span>--preferred-challenges<span class="w"> </span>dns<span class="w"> </span>-d<span class="w"> </span>chaveman.duckdns.org
 </code></pre></div>
-
-<ol>
-<li>Certbot provided a TXT record that needs to be added to DNS for verification.
+2. Certbot provided a TXT record that needs to be added to DNS for verification.
 Using DuckDNS's update URL:
 <code>https://www.duckdns.org/update?domains=chaveman&amp;token=MY_TOKEN&amp;txt=TXTVALUE&amp;verbose=true</code>
-i got an <strong>OK</strong> and this means DuckDNS set my TXT record.</li>
-<li>To make sure that the TXT Record was Published waited a couple of minutes for
+i got an <strong>OK</strong> and this means DuckDNS set my TXT record.
+3. To make sure that the TXT Record was Published waited a couple of minutes for
 DNS to propagate and using Google Admin Toolbox (Dig) I could see my
- TXT Value value under the ANSWER section so we're good to go.</li>
-<li>Pressed Enter and Certbot created two cert files <code>fullchain.pem</code> and
-<code>privkey.pem</code> in <code>/etc/letsencrypt/live/Vaultwarden.duckdns.org/</code>.</li>
-<li><code>sudo certbot certificates</code> to check the certificates expirity date,
+ TXT Value value under the ANSWER section so we're good to go.
+4. Pressed Enter and Certbot created two cert files <code>fullchain.pem</code> and
+<code>privkey.pem</code> in <code>/etc/letsencrypt/live/Vaultwarden.duckdns.org/</code>.
+5. <code>sudo certbot certificates</code> to check the certificates expirity date,
  was 90 days so to make it automaticaly renew: <code>sudo crontab -e</code>
-to open the crontab file with NANO and added the cron job <code>0 0 * * * certbot renew --quiet</code> which will run Certbot command to renew the SSL certificates automatically, ensuring the website's encryption remains valid without manual intervention.</li>
-</ol>
+to open the crontab file with NANO and added the cron job <code>0 0 * * * certbot renew --quiet</code> which will run Certbot command to renew the SSL certificates automatically, ensuring the website's encryption remains valid without manual intervention.</p>
 <h4 id="nginx-proxy-manager">Nginx Proxy Manager<a class="headerlink" href="#nginx-proxy-manager" title="Permanent link">&para;</a></h4>
 <p>Since the Web UI’s file explorer only shows local files, I had to copy the cert files from the Raspberry Pi to my local machine so they could be uploaded.</p>
 <ol>
-<li>Copy the cert files to my local machine using <code>scp</code> (secure copy):</li>
-</ol>
-<div class="codehilite"><pre><span></span><code><span class="w">  </span>scp<span class="w"> </span>joaof@192.168.1.228:/etc/letsencrypt/live/Vaultwarden.duckdns.org/fullchain.pem<span class="w"> </span>/home/joaof/Documents/Certificates
+<li>Copy the cert files to my local machine using <code>scp</code> (secure copy):
+<div class="highlight"><pre><span></span><code><span class="w">  </span>scp<span class="w"> </span>joaof@192.168.1.228:/etc/letsencrypt/live/Vaultwarden.duckdns.org/fullchain.pem<span class="w"> </span>/home/joaof/Documents/Certificates
 <span class="w">  </span>scp<span class="w"> </span>joaof@192.168.1.228:/etc/letsencrypt/live/Vaultwarden.duckdns.org/privkey.pem<span class="w"> </span>/home/joaof/Documents/Certificates
-</code></pre></div>
-
-<ol>
+</code></pre></div></li>
 <li>Returned to the <strong>Nginx Proxy Manager Web UI</strong> &gt; <strong>SSL Certificates</strong> &gt; 
 <strong>Add SSL Certificate</strong> &gt; <strong>Custom</strong> and selected the cert files:
 <img alt="certificates" src="../images/SSL_Certificate.png" /></li>
@@ -893,22 +880,16 @@ an SSL error on the browser and using <a href="https://portchecker.co/">Port Che
 <code>sudo raspi-config</code></li>
 <li>Navigated to <strong>Interfacing Options</strong> &gt; <strong>SPI</strong> &gt; <strong>Enable</strong></li>
 <li>After enabling SPI, I rebooted the system: <code>sudo reboot</code></li>
-<li>Installing the necessary Python libraries:</li>
-</ol>
-<div class="codehilite"><pre><span></span><code>sudo apt-get update
+<li>Installing the necessary Python libraries:
+<div class="highlight"><pre><span></span><code>sudo apt-get update
 sudo apt-get install python3-pip python3-pil python3-numpy
 sudo apt-get install python3-spidev python3-rpi.gpio
 sudo apt-get install python3-psutil
-</code></pre></div>
-
-<ol>
-<li>Cloned the <a href="https://github.com/waveshareteam/e-Paper/">waveshareteam repo</a> and moved into the correct directory: </li>
-</ol>
-<div class="codehilite"><pre><span></span><code>git clone https://github.com/waveshare/e-Paper.git
+</code></pre></div></li>
+<li>Cloned the <a href="https://github.com/waveshareteam/e-Paper/">waveshareteam repo</a> and moved into the correct directory: 
+<div class="highlight"><pre><span></span><code>git clone https://github.com/waveshare/e-Paper.git
 cd ~/e-Paper/RaspberryPi_JetsonNano/python
-</code></pre></div>
-
-<ol>
+</code></pre></div></li>
 <li>For the Waveshare 2.13-inch v4 display, I used the <code>epd2in13_V4</code> module from <code>../lib/waveshare_epd</code> and tested it using <code>../examples/epd2in13_V4_test.py</code>.
 From there, I built <a href="../system_monitor_v1.txt">system_monitor_v1</a> to display system info like temperature, uptime, and IP address.</li>
 </ol>

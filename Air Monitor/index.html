@@ -563,15 +563,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ligacoes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ligações
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#configuracao-de-dados" class="md-nav__link">
     <span class="md-ellipsis">
       Configuração de Dados
@@ -833,15 +824,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ligacoes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ligações
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#configuracao-de-dados" class="md-nav__link">
     <span class="md-ellipsis">
       Configuração de Dados
@@ -968,19 +950,29 @@ Ambientes muito húmidos aumentam esse risco. Alguns dispositivos também calcul
 <p><strong>SHT41</strong> - Sensor de <strong>temperatura e humidade</strong> com maior precisão do que os comuns <strong>DHT11</strong> e <strong>DHT22</strong>. Comunica via <strong>I2C</strong> e permite medições de temperatura entre <strong>-40°C e 125°C</strong> e de humidade entre <strong>0% e 100%</strong>.  </p>
 </li>
 <li>
-<p><strong>Senseair S8</strong> - Sensor de <strong>CO2</strong> do tipo <strong>NDIR (Non-Dispersive Infrared)</strong>, garantindo medições mais estáveis e precisas do que sensores <strong>MOX</strong>. Mede concentrações de <strong>CO2 entre 400 e 5000 ppm</strong>, com uma precisão de <strong>±40 ppm + 3% da leitura</strong>. Comunica via <strong>UART</strong>.  </p>
+<p><strong>Senseair S8</strong> – Sensor de <strong>CO₂</strong> do tipo <strong>NDIR (Non-Dispersive Infrared)</strong>. Mede concentrações entre <strong>400 e 5000 ppm</strong>, com uma precisão de <strong>±40 ppm + 3% da leitura</strong>, comunicando via <strong>UART</strong>.  </p>
+<p>Possui um sistema de <strong>ABC (Automatic Baseline Correction)</strong> ativo por padrão, que torna o sensor praticamente <strong>livre de manutenção</strong> em ambientes normais. Este algoritmo realiza uma <strong>correção automática de deriva</strong> ao longo do tempo, assumindo que o sensor será exposto periodicamente a ar fresco com uma concentração de <strong>400 ppm de CO₂</strong>.  </p>
+<p>O ciclo padrão de correção ocorre a cada <strong>15 dias</strong> de operação contínua, é aconselhado deixar o sensor ativo por pelo menos <strong>25 dias</strong> para garantir que estou a receber medições precisas.</p>
 </li>
 <li>
 <p><strong>Plantower PMS2.5</strong> - Sensor de <strong>partículas em suspensão (PM)</strong>, capaz de medir <strong>PM1.0, PM2.5 e PM10</strong>. Permite identificar partículas com diâmetros mínimos de <strong>0.3 µm</strong>, sendo útil para monitorizar poeira, fumo e poluição urbana. Comunica via <strong>UART</strong>.  </p>
 </li>
+<li>
+<p><strong>Panasonic SN-GCJA5</strong> – Sensor de partículas <strong>Laser-based</strong> de alta precisão, usado para medir <strong>PM1.0</strong>, <strong>PM2.5</strong> e <strong>PM10</strong> (Particulate Matter). Baseia-se no <strong>princípio de dispersão de luz</strong> (light scattering) usando um <strong>laser interno</strong> e um fotodiodo sensível para detetar partículas suspensas no ar.  </p>
+<p>Possui uma <strong>ventoinha interna</strong> que garante fluxo de ar constante através da câmara de medição, o que melhora a fiabilidade das leituras. A comunicação é feita via <strong>UART</strong> ou <strong>I2C</strong>.  </p>
+<p>O sensor tem uma elevada sensibilidade, sendo capaz de detetar partículas com diâmetros <strong>inferiores a 1 µm</strong>. As leituras são fornecidas em <strong>μg/m³</strong>. </p>
+</li>
 </ul>
 <h2 id="implementacao">Implementação<a class="headerlink" href="#implementacao" title="Permanent link">&para;</a></h2>
 <p>Para não seguir o caminho tradicional com <strong>Arduino IDE</strong> e experimentar algo novo, decidi utilizar <strong>ESP IDF</strong>. É uma opção mais flexível, permitindo testar rapidamente os sensores sem complicação.  </p>
+<details class="note">
+<summary>👉 Clique aqui para ver o guia técnico detalhado de configuração do ambiente</summary>
 <h3 id="configurar-o-esp32-c6"><strong>Configurar o ESP32-C6</strong><a class="headerlink" href="#configurar-o-esp32-c6" title="Permanent link">&para;</a></h3>
 <p>O ESP32-C6 vem sem <strong>ESP IDF</strong> instalado, então é necessário <strong>flashar o firmware</strong> antes de começar.  </p>
 <h4 id="1-instalar-o-esptool"><strong>1. Instalar o esptool</strong><a class="headerlink" href="#1-instalar-o-esptool" title="Permanent link">&para;</a></h4>
 <p>Antes de tudo, precisamos do <strong>esptool</strong>, que serve para interagir com microcontroladores ESP. Como já tenho <strong>Python</strong> instalado, basta abrir o <strong>cmd</strong> e executar:<br />
-<code>pip install esptool</code></p>
+<div class="highlight"><pre><span></span><code>pip install esptool
+</code></pre></div></p>
 <h4 id="2-ligar-o-esp32-c6-ao-pc"><strong>2. Ligar o ESP32-C6 ao PC</strong><a class="headerlink" href="#2-ligar-o-esp32-c6-ao-pc" title="Permanent link">&para;</a></h4>
 <p>A parte mais complicada... conectar o ESP32-C6 ao PC usando um <strong>cabo USB-C para USB-A</strong> 😆.  </p>
 <h4 id="3-instalar-os-drivers-usb-to-uart"><strong>3. Instalar os drivers USB to UART</strong><a class="headerlink" href="#3-instalar-os-drivers-usb-to-uart" title="Permanent link">&para;</a></h4>
@@ -1013,25 +1005,15 @@ Tomar nota do número da porta COM atribuída (no meu caso, <strong>COM3</strong
 <code>idf.py -p COM3 monitor</code></li>
 </ul>
 <hr />
-<h2 id="ligacoes"><strong>Ligações</strong><a class="headerlink" href="#ligacoes" title="Permanent link">&para;</a></h2>
-<p>Como referência para as ligações, utilizo esta imagem da <strong>board</strong> que estou a usar:<br />
-<img alt="ssl" src="../images/ESP32-C6.png" />  </p>
-<p>Conforme mencionado na secção de <strong>hardware</strong>, os sensores comunicam da seguinte forma:<br />
-- <strong>Senseair S8</strong> e <strong>Plantower PMS2.5</strong> → UART<br />
-- <strong>SHT41</strong> → I2C  </p>
-<hr />
 <h2 id="configuracao-de-dados"><strong>Configuração de Dados</strong><a class="headerlink" href="#configuracao-de-dados" title="Permanent link">&para;</a></h2>
 <p>Para armazenar e visualizar os dados dos sensores, utilizei o <strong>InfluxDB</strong>, o <strong>Mosquitto MQTT Broker</strong> e o <strong>Telegraf</strong> para integrar os serviços.  </p>
 <h3 id="1-instalar-e-configurar-o-influxdb"><strong>1. Instalar e configurar o InfluxDB</strong><a class="headerlink" href="#1-instalar-e-configurar-o-influxdb" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Fazer <strong>download</strong> da versão mais recente do <strong>InfluxDB v2</strong> no <a href="https://www.influxdata.com/">site oficial</a>.  </li>
 <li>Abrir o <strong>PowerShell</strong> em modo <strong>Administrador</strong> e navegar até a pasta de <strong>Downloads</strong>.  </li>
-<li>Executar o seguinte comando para extrair os ficheiros:  </li>
-</ol>
-<div class="codehilite"><pre><span></span><code>Expand-Archive .\influxdb2-2.7.11-windows.zip -DestinationPath &#39;C:\Program Files\InfluxData&#39;
-</code></pre></div>
-
-<ol>
+<li>Executar o seguinte comando para extrair os ficheiros:<br />
+<div class="highlight"><pre><span></span><code>Expand-Archive .\influxdb2-2.7.11-windows.zip -DestinationPath &#39;C:\Program Files\InfluxData&#39;
+</code></pre></div></li>
 <li>Clicar com o <strong>botão direito</strong> no <strong>.exe</strong>, copiar o <strong>caminho completo</strong> e abrir o <strong>CMD</strong>.  </li>
 <li>Colar o <strong>caminho</strong> copiado e pressionar <strong>Enter</strong>.  </li>
 </ol>
@@ -1046,63 +1028,60 @@ Criar uma conta e seguir as instruções iniciais.  </p>
 <h4 id="testar-a-comunicacao-mqtt"><strong>Testar a comunicação MQTT</strong><a class="headerlink" href="#testar-a-comunicacao-mqtt" title="Permanent link">&para;</a></h4>
 <p>Abrir dois <strong>CMDs</strong>:  </p>
 <ul>
-<li><strong>CMD 1</strong> (para subscrever a um tópico):  </li>
+<li>
+<p><strong>CMD 1</strong> (para subscrever a um tópico):<br />
+<div class="highlight"><pre><span></span><code>&quot;C:\Program Files\mosquitto\mosquitto_sub.exe&quot; -h 127.0.0.1 -t test/topic
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>CMD 2</strong> (para publicar uma mensagem no tópico):<br />
+<div class="highlight"><pre><span></span><code>&quot;C:\Program Files\mosquitto\mosquitto_pub.exe&quot; -h 127.0.0.1 -t test/topic -m &quot;Hello from Mosquitto&quot;
+</code></pre></div></p>
+</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>&quot;C:\Program Files\mosquitto\mosquitto_sub.exe&quot; -h 127.0.0.1 -t test/topic
-</code></pre></div>
-
-<ul>
-<li><strong>CMD 2</strong> (para publicar uma mensagem no tópico):  </li>
-</ul>
-<div class="codehilite"><pre><span></span><code>&quot;C:\Program Files\mosquitto\mosquitto_pub.exe&quot; -h 127.0.0.1 -t test/topic -m &quot;Hello from Mosquitto&quot;
-</code></pre></div>
-
 <p>Se a mensagem <strong>"Hello from Mosquitto"</strong> aparecer no primeiro terminal, a comunicação MQTT está a funcionar corretamente.  </p>
 <p>Agora, precisamos de conectar o <strong>Mosquitto</strong> ao <strong>InfluxDB</strong> através do <strong>Telegraf</strong> e do <strong>MQTT Consumer</strong>.  </p>
 <hr />
 <h3 id="3-instalar-e-configurar-o-telegraf"><strong>3. Instalar e configurar o Telegraf</strong><a class="headerlink" href="#3-instalar-e-configurar-o-telegraf" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Fazer <strong>download</strong> do <strong>Telegraf</strong> no <a href="https://www.influxdata.com/time-series-platform/telegraf/">site oficial</a>.  </li>
-<li>No <strong>PowerShell</strong> (modo Administrador), executar:  </li>
+<li>No <strong>PowerShell</strong> (modo Administrador), executar:<br />
+<div class="highlight"><pre><span></span><code>wget https://dl.influxdata.com/telegraf/releases/telegraf-1.34.0_windows_amd64.zip -UseBasicParsing -OutFile telegraf-1.34.0_windows_amd64.zip
+</code></pre></div></li>
+<li>Após o <strong>download</strong>, extrair os ficheiros:<br />
+<div class="highlight"><pre><span></span><code>Expand-Archive .\telegraf-1.34.0_windows_amd64.zip -DestinationPath &#39;C:\Program Files\InfluxData\telegraf&#39;
+</code></pre></div></li>
 </ol>
-<div class="codehilite"><pre><span></span><code>wget https://dl.influxdata.com/telegraf/releases/telegraf-1.34.0_windows_amd64.zip -UseBasicParsing -OutFile telegraf-1.34.0_windows_amd64.zip
-</code></pre></div>
-
-<ol>
-<li>Após o <strong>download</strong>, extrair os ficheiros:  </li>
-</ol>
-<div class="codehilite"><pre><span></span><code>Expand-Archive .\telegraf-1.34.0_windows_amd64.zip -DestinationPath &#39;C:\Program Files\InfluxData\telegraf&#39;
-</code></pre></div>
-
 <hr />
 <h3 id="4-configurar-o-telegraf-para-consumir-mqtt"><strong>4. Configurar o Telegraf para consumir MQTT</strong><a class="headerlink" href="#4-configurar-o-telegraf-para-consumir-mqtt" title="Permanent link">&para;</a></h3>
 <ol>
 <li>No <strong>WebUI</strong> do InfluxDB, criar um <strong>Telegraf Configuration File</strong>:  </li>
 <li>Escolher o <strong>bucket Sensores</strong>.  </li>
 <li>Selecionar o <strong>plugin MQTT Consumer</strong> na <strong>Plugin Library</strong>.  </li>
-<li>Adicionar os seguintes <strong>inputs</strong>:  </li>
-</ol>
-<div class="codehilite"><pre><span></span><code>[[inputs.mqtt_consumer]] servers = [&quot;tcp://127.0.0.1:1883&quot;] topics = [ &quot;sensores/sht41/temperature&quot;, &quot;sensores/sht41/humidity&quot;, &quot;sensores/gcja5/pm1&quot;, &quot;sensores/gcja5/pm2.5&quot;, &quot;sensores/gcja5/pm10&quot;, &quot;sensores/sensair_s8/co2&quot; ] data_format = &quot;influx&quot;
-</code></pre></div>
-
-<ol>
-<li>Adicionar o <strong>Token de Autenticação</strong> conforme indicado no WebUI.  </li>
+<li>
+<p>Adicionar os seguintes <strong>inputs</strong>:<br />
+<div class="highlight"><pre><span></span><code>[[inputs.mqtt_consumer]] servers = [&quot;tcp://127.0.0.1:1883&quot;] topics = [ &quot;sensores/sht41/temperature&quot;, &quot;sensores/sht41/humidity&quot;, &quot;sensores/gcja5/pm1&quot;, &quot;sensores/gcja5/pm2.5&quot;, &quot;sensores/gcja5/pm10&quot;, &quot;sensores/sensair_s8/co2&quot; ] data_format = &quot;influx&quot;
+</code></pre></div></p>
+</li>
+<li>
+<p>Adicionar o <strong>Token de Autenticação</strong> conforme indicado no WebUI.  </p>
+</li>
 </ol>
 <hr />
 <h3 id="5-testar-a-configuracao"><strong>5. Testar a configuração</strong><a class="headerlink" href="#5-testar-a-configuracao" title="Permanent link">&para;</a></h3>
 <p>Abrir dois <strong>CMDs</strong>:  </p>
 <ul>
-<li><strong>CMD 1</strong> (para monitorizar os dados recebidos pelo Telegraf):  </li>
+<li>
+<p><strong>CMD 1</strong> (para monitorizar os dados recebidos pelo Telegraf):<br />
+<div class="highlight"><pre><span></span><code>telegraf --config http://localhost:8086/api/v2/telegrafs/0e96aec27fc2a000 --debug
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>CMD 2</strong> (para enviar dados de teste via Mosquitto):<br />
+<div class="highlight"><pre><span></span><code>mosquitto_pub -h 127.0.0.1 -t sensores/sht41/temperature -m &quot;temperature,location=office value=25.3&quot;
+</code></pre></div></p>
+</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>telegraf --config http://localhost:8086/api/v2/telegrafs/0e96aec27fc2a000 --debug
-</code></pre></div>
-
-<ul>
-<li><strong>CMD 2</strong> (para enviar dados de teste via Mosquitto):  </li>
-</ul>
-<div class="codehilite"><pre><span></span><code>mosquitto_pub -h 127.0.0.1 -t sensores/sht41/temperature -m &quot;temperature,location=office value=25.3&quot;
-</code></pre></div>
-
 <p>Se tudo estiver configurado corretamente, o terminal deve exibir a mensagem de sucesso:  </p>
 <p><strong>[outputs.influxdb_v2] Wrote batch of 1 metrics in 5.0302ms</strong></p>
 <hr />
@@ -1110,12 +1089,12 @@ Criar uma conta e seguir as instruções iniciais.  </p>
 <ol>
 <li>Aceder ao <strong>WebUI</strong> do <strong>InfluxDB</strong>.  </li>
 <li>Ir a <strong>Data Explorer</strong> e abrir o <strong>Script Editor</strong>.  </li>
-<li>Executar a seguinte <strong>query</strong> para visualizar os dados:  </li>
+<li>Executar a seguinte <strong>query</strong> para visualizar os dados:<br />
+<div class="highlight"><pre><span></span><code>from(bucket: &quot;Sensores&quot;) |&gt; range(start: -1h) |&gt; filter(fn: (r) =&gt; r._measurement == &quot;temperature&quot; or r._measurement == &quot;humidity&quot;)
+</code></pre></div></li>
 </ol>
-<div class="codehilite"><pre><span></span><code>from(bucket: &quot;Sensores&quot;) |&gt; range(start: -1h) |&gt; filter(fn: (r) =&gt; r._measurement == &quot;temperature&quot; or r._measurement == &quot;humidity&quot;)
-</code></pre></div>
-
-<p>Os valores dos sensores devem aparecer no gráfico.</p>
+<p>Os valores dos sensores aparecem no gráfico como desejado.</p>
+</details>
 <p>🚧 <strong>Work in Progress</strong> 🚧</p>
 
 
