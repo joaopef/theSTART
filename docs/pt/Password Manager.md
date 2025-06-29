@@ -156,11 +156,11 @@ Uma vez que o explorador de ficheiros da Web UI apenas mostra ficheiros locais, 
   ```
 2. Voltar à **Web UI do Nginx Proxy Manager** > **SSL Certificates** >
 **Add SSL Certificate** > **Custom** e selecionar os ficheiros de certificado:
-![certificados](../assets/images/SSL_Certificate.png)
+![certificados](../assets/images/password-manager/SSL_Certificate.png)
 3. **Adicionar Proxy Host**:
-![adicionarproxyhost](../assets/images/ProxyHost.png)
+![adicionarproxyhost](../assets/images/password-manager/ProxyHost.png)
 4. Em **SSL**:
-![ssl](../assets/images/SSLProxyHost.png)
+![ssl](../assets/images/password-manager/SSLProxyHost.png)
 
 Neste momento já deveria ser possível ligar-me a https://chaveman.duckdns.org, mas estava a obter um erro SSL no navegador. Usando o [Port Checker](https://portchecker.co/), percebi que o meu ISP estava a bloquear o tráfego de entrada na porta 443.
 
@@ -187,7 +187,7 @@ cd ~/e-Paper/RaspberryPi_JetsonNano/python
 6. Para o meu e-paper Waveshare de 2.13 polegadas v4, utilizei o respectivo módulo **epd2in13_V4** de ``../lib/waveshare_epd`` e testei-o com ``../examples/epd2in13_V4_test.py``.
 A partir daí, construí o [system_monitor_v1](system_monitor_v1.txt) para exibir informações do sistema, como temperatura, tempo de atividade e endereço IP.
 
-![system_monitorv1](../assets/images/system_monitor.jpeg)
+![system_monitorv1](../assets/images/password-manager/system_monitor.jpeg)
 
 outra possibilidade seria obter um dominio e cloudflare tunnel
 

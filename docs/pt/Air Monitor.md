@@ -47,8 +47,6 @@ O fluxo de dados é o seguinte:
 3.  O **InfluxDB** é a base de dados de séries temporais escolhida para armazenar eficientemente todas as medições históricas.
 4.  Finalmente, o **Grafana** serve como a interface de visualização. Conectado ao InfluxDB, permite a criação de dashboards dinâmicos para monitorização em tempo real e análise de tendências históricas.
 
-![fluxo-de-dados](../assets/images/controlador-pid/fluxodedados.jpeg)
-
 
 ??? note "👉 Clique aqui para ver o guia técnico detalhado de configuração do ambiente"
     #### **Configurar o ESP32-C6**  
