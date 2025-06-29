@@ -32,27 +32,23 @@ Para comparação, um fio de cabelo humano tem aproximadamente 70 micrómetros d
 
 ### Hardware  
 
-- **ESP32C6** - Dispositivo central responsável pela recolha e transmissão de dados via **WiFi 6** e **Bluetooth 5**, garantindo uma comunicação eficiente com os sensores.  
-
-- **SHT41** - Sensor de **temperatura e humidade** com maior precisão do que os comuns **DHT11** e **DHT22**. Comunica via **I2C** e permite medições de temperatura entre **-40°C e 125°C** e de humidade entre **0% e 100%**.  
-
-- **Senseair S8** – Sensor de **CO₂** do tipo **NDIR (Non-Dispersive Infrared)**. Mede concentrações entre **400 e 5000 ppm**, com uma precisão de **±40 ppm + 3% da leitura**, comunicando via **UART**.  
-
-    Possui um sistema de **ABC (Automatic Baseline Correction)** ativo por padrão, que torna o sensor praticamente **livre de manutenção** em ambientes normais. Este algoritmo realiza uma **correção automática de deriva** ao longo do tempo, assumindo que o sensor será exposto periodicamente a ar fresco com uma concentração de **400 ppm de CO₂**.  
-
-    O ciclo padrão de correção ocorre a cada **15 dias** de operação contínua, é aconselhado deixar o sensor ativo por pelo menos **25 dias** para garantir que estou a receber medições precisas.
-
-- **Plantower PMS2.5** - Sensor de **partículas em suspensão (PM)**, capaz de medir **PM1.0, PM2.5 e PM10**. Permite identificar partículas com diâmetros mínimos de **0.3 µm**, sendo útil para monitorizar poeira, fumo e poluição urbana. Comunica via **UART**.  
-
-- **Panasonic SN-GCJA5** – Sensor de partículas **Laser-based** de alta precisão, usado para medir **PM1.0**, **PM2.5** e **PM10** (Particulate Matter). Baseia-se no **princípio de dispersão de luz** (light scattering) usando um **laser interno** e um fotodiodo sensível para detetar partículas suspensas no ar.  
-
-    Possui uma **ventoinha interna** que garante fluxo de ar constante através da câmara de medição, o que melhora a fiabilidade das leituras. A comunicação é feita via **UART** ou **I2C**.  
-
-    O sensor tem uma elevada sensibilidade, sendo capaz de detetar partículas com diâmetros **inferiores a 1 µm**. As leituras são fornecidas em **μg/m³**. 
+*   **ESP32-C6:** Dispositivo responsável pela recolha de dados e pelo envio de comandos ao ar condicionado.
+*   **SHT41 / Senseair S8 / Plantower PMS2.5:** Conjunto de sensores de alta precisão para medição de temperatura, humidade, CO2 e partículas em suspensão.
+*   **Orange Pi:** Servidor central do sistema. É um computador de placa única (SBC) de baixo consumo que corre 24/7 e aloja toda a infraestrutura de dados (MQTT Broker, InfluxDB, Telegraf, Grafana), além de ser responsável pelo processamento e armazenamento do histórico.
 
 ### Implementação  
 
-Para não seguir o caminho tradicional com **Arduino IDE** e experimentar algo novo, decidi utilizar **ESP IDF**. É uma opção mais flexível, permitindo testar rapidamente os sensores sem complicação.  
+A infraestrutura de dados foi projetada para ser robusta e escalável, com uma clara separação de funções entre o nó sensor e o servidor central. Todos os serviços de back-end correm num **Orange Pi**, garantindo operação contínua e baixo consumo energético.
+
+O fluxo de dados é o seguinte:
+
+1.  O **ESP32** recolhe os dados dos sensores e publica-os em tópicos específicos num **Broker MQTT (Mosquitto)** que corre no Orange Pi.
+2.  O **Telegraf**, também no Orange Pi, subscreve a estes tópicos, formata os dados e envia-os para a base de dados.
+3.  O **InfluxDB** é a base de dados de séries temporais escolhida para armazenar eficientemente todas as medições históricas.
+4.  Finalmente, o **Grafana** serve como a interface de visualização. Conectado ao InfluxDB, permite a criação de dashboards dinâmicos para monitorização em tempo real e análise de tendências históricas.
+
+![fluxo-de-dados](../assets/images/controlador-pid/fluxodedados.jpeg)
+
 
 ??? note "👉 Clique aqui para ver o guia técnico detalhado de configuração do ambiente"
     #### **Configurar o ESP32-C6**  
@@ -116,7 +112,7 @@ Para não seguir o caminho tradicional com **Arduino IDE** e experimentar algo n
     
 
     Como referência para as ligações, utilizo esta imagem da **board** que estou a usar:  
-    ![esp32](../assets/images/ESP32-C6.png)  
+    ![esp32](../assets/images/controlador-pid/ESP32-C6.png)  
 
     Conforme mencionado na secção de **hardware**, os sensores comunicam da seguinte forma:  
     - **Senseair S8** e **Plantower PMS2.5** → UART  
@@ -229,25 +225,25 @@ Para não seguir o caminho tradicional com **Arduino IDE** e experimentar algo n
     Os valores dos sensores aparecem no gráfico como desejado.
 
 
-## Desenvolvimento e  Simulação de um Controlador PID
+## Desenvolvimento e  Simulação de um Controlador PID de Humidade
 
 Para dar inteligência ao sistema, foi desenvolvido um controlador Proporcional-Integral-Derivativo (PID) no ESP32. Antes de o aplicar a um atuador físico, a sua performance foi validada rigorosamente através de uma metodologia de simulação em duas fases.
 
 ### Análise em Malha Aberta (Estímulo Real)
 
-Primeiramente, para validar a reatividade do controlador, o sistema operou em **malha aberta**. Nesta configuração, o PID recebia a **humidade medida pelo sensor (SHT41)** como input. A sua saída, no entanto, controlava um atuador simulado e não influenciava o ambiente físico. O objetivo era confirmar que o algoritmo conseguia detetar corretamente o erro em relação ao setpoint e gerar uma ação de controlo proporcional e imediata, como se pode observar na resposta do sistema a perturbações reais. ![malhaaberta](../assets/images/MalhaAberta.png)
+Primeiramente, para validar a reatividade do controlador, o sistema operou em **malha aberta**. Nesta configuração, o PID recebia a **humidade medida pelo sensor (SHT41)** como input. A sua saída, no entanto, controlava um atuador simulado e não influenciava o ambiente físico. O objetivo era confirmar que o algoritmo conseguia detetar corretamente o erro em relação ao setpoint e gerar uma ação de controlo proporcional e imediata, como se pode observar na resposta do sistema a perturbações reais. ![malhaaberta](../assets/images/controlador-pid/MalhaAberta.png)
 
 ### Análise em Malha Fechada (Simulação Pura)
 
-Posteriormente, o sistema foi testado numa configuração de **malha fechada pura**. Aqui, o controlador foi completamente isolado do ambiente real: o seu input de erro era calculado com base na **saída do modelo matemático de humidade (`hr_modelo`)** do ciclo anterior. Esta abordagem "controlador + modelo" permitiu a **sintonia fina dos ganhos do PID (Kp, Ki, Kd)** e a análise detalhada da sua performance (tempo de resposta, overshoot e estabilidade) de forma isolada e repetível.![malhafechada](../assets/images/MalhaFechada.png)
+Posteriormente, o sistema foi testado numa configuração de **malha fechada pura**. Aqui, o controlador foi completamente isolado do ambiente real: o seu input de erro era calculado com base na **saída do modelo matemático de humidade (`hr_modelo`)** do ciclo anterior. Esta abordagem "controlador + modelo" permitiu a **sintonia fina dos ganhos do PID (Kp, Ki, Kd)** e a análise detalhada da sua performance (tempo de resposta, overshoot e estabilidade) de forma isolada e repetível.![malhafechada](../assets/images/controlador-pid/MalhaFechada.png)
 
-Esta validação em duas etapas provou que o algoritmo cumpre o objetivo então decidi avançar para a fase de implementação com um atuador real. Todo o trabalho de desenvolvimento e análise foi documentado em detalhe.
+O **Grafana** foi uma ferramenta crucial durante a fase de desenvolvimento do controlador PID. Os dashboards permitiram visualizar em tempo real a resposta do sistema, facilitando muito a **sintonia dos ganhos (Kp, Ki, Kd)** e a validação do algoritmo em simulações de malha aberta e fechada. Esta validação em duas etapas provou que o algoritmo cumpre o objetivo então decidi avançar para a fase de implementação com um atuador real. Todo o trabalho de desenvolvimento e análise foi documentado em detalhe.
 
 > **O relatório elaborado pode ser consultado aqui:**
-> **[➡️ Relatório de Análise do Controlador PID (PDF)](https://joaopef.github.io/theSTART/docs/assets/pdf/Relatorio_PID.pdf)**
+> **[➡️ Relatório de Análise do Controlador PID (PDF)](https://github.com/joaopef/theSTART/blob/main/docs/assets/pdf/Relatorio_PID.pdf)**
 >
 > **O código-fonte completo da simulação está disponível no GitHub:**
-> **[➡️ Ver o Código no GitHub</big>](https://github.com/joaopef/esp32-PID)**
+> **[➡️ Ver o Código no GitHub</big>](https://github.com/joaopef/esp32_PID_Humidity)**
 
 
 ## A Implementação Real - Controlo de um Ar Condicionado via Wi-Fi
