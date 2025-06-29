@@ -62,12 +62,14 @@ plugins:
       default_language: en
 
 
-
-
 extra_css:
   - styles.css
 
 markdown_extensions:
+  - attr_list
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
   - codehilite:
       guess_lang: false
   - toc:

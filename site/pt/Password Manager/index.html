@@ -759,9 +759,8 @@
 </ol>
 <h2 id="no-terminal">No terminal<a class="headerlink" href="#no-terminal" title="Permanent link">&para;</a></h2>
 <p>Para garantir que tudo corre sem problemas, comecei por atualizar e atualizar os pacotes de software:  </p>
-<div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>full-upgrade<span class="w"> </span>-y
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>full-upgrade<span class="w"> </span>-y
 </code></pre></div>
-
 <h3 id="instalar-docker-e-portainer">Instalar Docker e Portainer<a class="headerlink" href="#instalar-docker-e-portainer" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Instalar o <a href="https://docs.docker.com/desktop/setup/install/linux/">Docker</a>:   <code>curl -sSL https://get.docker.com | sh</code></li>
@@ -770,8 +769,8 @@
 <li>Obter a versão mais recente do Portainer:<br />
 <code>sudo docker pull portainer/portainer-ce:latest</code></li>
 <li>Criar e executar um contentor Portainer:<br />
-<code>bash
-   sudo docker run -d -p 9000:9000 --restart=always --name=portainer -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest</code></li>
+   <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">9000</span>:9000<span class="w"> </span>--restart<span class="o">=</span>always<span class="w"> </span>--name<span class="o">=</span>portainer<span class="w"> </span>-v<span class="w"> </span>/var/run/docker.sock:/var/run/docker.sock<span class="w"> </span>-v<span class="w"> </span>portainer_data:/data<span class="w"> </span>portainer/portainer-ce:latest
+</code></pre></div></li>
 <li>Abrir um navegador web e aceder à interface do Portainer em:<br />
 <code>http://192.168.1.228:9000</code></li>
 </ol>
@@ -798,16 +797,16 @@
 <p>Para aceder ao Vaultwarden de forma segura via HTTPS, utilizei um reverse proxy com o amigo <a href="https://nginxproxymanager.com/">Nginx Proxy Manager</a>.  </p>
 <ol>
 <li>Instalar e iniciar o contentor Nginx Proxy Manager:<br />
-<code>bash
-   sudo docker run -d \
-     --name=nginx-proxy-manager \
-     -p 81:81 \
-     -p 80:80 \
-     -p 443:443 \
-     -v /srv/dev-disk-by-label-Backup/Docker/nginx-proxy-manager/data:/data \
-     -v /srv/dev-disk-by-label-Backup/Docker/nginx-proxy-manager/letsencrypt:/etc/letsencrypt \
-     --restart unless-stopped \
-     jc21/nginx-proxy-manager:latest</code></li>
+   <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="o">=</span>nginx-proxy-manager<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">81</span>:81<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">443</span>:443<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/srv/dev-disk-by-label-Backup/Docker/nginx-proxy-manager/data:/data<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/srv/dev-disk-by-label-Backup/Docker/nginx-proxy-manager/letsencrypt:/etc/letsencrypt<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--restart<span class="w"> </span>unless-stopped<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>jc21/nginx-proxy-manager:latest
+</code></pre></div></li>
 <li>
 <p>Para verificar se o contentor iniciou com sucesso, abri o <strong>Portainer</strong> e confirmei que o contentor <code>nginx-proxy-manager</code> estava em execução. Outra forma seria executar: <code>docker ps -a</code>. </p>
 <p>Se o contentor não estivesse a correr, para resolver problemas ver os logs com: <code>docker logs nginx-proxy-manager</code>.</p>
@@ -828,14 +827,13 @@ Vou usar o <strong>DuckDNS</strong> para DNS dinâmico e o <strong>Let’s Encry
 </ol>
 <h3 id="gerar-um-certificado-ssl-usando-lets-encrypt">Gerar um Certificado SSL usando Let's Encrypt<a class="headerlink" href="#gerar-um-certificado-ssl-usando-lets-encrypt" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Usei o <strong>Certbot</strong> com o <strong>Desafio DNS-01</strong> para obter um certificado SSL para o meu domínio DuckDNS.<br />
-Executei o seguinte comando para solicitar um certificado:  </li>
-</ol>
-<div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>certbot<span class="w"> </span>-y
+<li>
+<p>Usei o <strong>Certbot</strong> com o <strong>Desafio DNS-01</strong> para obter um certificado SSL para o meu domínio DuckDNS.<br />
+Executei o seguinte comando para solicitar um certificado:<br />
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>certbot<span class="w"> </span>-y
 sudo<span class="w"> </span>certbot<span class="w"> </span>certonly<span class="w"> </span>--manual<span class="w"> </span>--preferred-challenges<span class="w"> </span>dns<span class="w"> </span>-d<span class="w"> </span>chaveman.duckdns.org
-</code></pre></div>
-
-<ol>
+</code></pre></div></p>
+</li>
 <li>
 <p>O Certbot forneceu um <strong>registo TXT</strong> que tem de ser adicionado ao DNS para verificação.
  Utilizando o URL de atualização do DuckDNS:
@@ -865,9 +863,8 @@ garantindo que a encriptação do site se mantém válida sem necessidade de int
 <h4 id="nginx-proxy-manager">Nginx Proxy Manager<a class="headerlink" href="#nginx-proxy-manager" title="Permanent link">&para;</a></h4>
 <p>Uma vez que o explorador de ficheiros da Web UI apenas mostra ficheiros locais, tive de copiar os ficheiros de certificado do Raspberry Pi para o meu computador para que pudessem ser carregados.</p>
 <ol>
-<li>Copiar os ficheiros de certificado para o meu computador usando <code>scp</code> (secure copy):</li>
-</ol>
-<div class="codehilite"><pre><span></span><code><span class="w">  </span>scp<span class="w"> </span>joaof@192.168.1.228:/etc/letsencrypt/live/Vaultwarden.duckdns.org/fullchain.pem<span class="w"> </span>/home/joaof/Documents/Certificates
+<li>Copiar os ficheiros de certificado para o meu computador usando <code>scp</code> (secure copy):
+<div class="highlight"><pre><span></span><code><span class="w">  </span>scp<span class="w"> </span>joaof@192.168.1.228:/etc/letsencrypt/live/Vaultwarden.duckdns.org/fullchain.pem<span class="w"> </span>/home/joaof/Documents/Certificates
 <span class="w">  </span>scp<span class="w"> </span>joaof@192.168.1.228:/etc/letsencrypt/live/Vaultwarden.duckdns.org/privkey.pem<span class="w"> </span>/home/joaof/Documents/Certificates
 <span class="w">  </span><span class="sb">```</span>
 <span class="m">2</span>.<span class="w"> </span>Voltar<span class="w"> </span>à<span class="w"> </span>**Web<span class="w"> </span>UI<span class="w"> </span><span class="k">do</span><span class="w"> </span>Nginx<span class="w"> </span>Proxy<span class="w"> </span>Manager**<span class="w"> </span>&gt;<span class="w"> </span>**SSL<span class="w"> </span>Certificates**<span class="w"> </span>&gt;
@@ -894,16 +891,11 @@ sudo<span class="w"> </span>apt-get<span class="w"> </span>update
 sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>python3-pip<span class="w"> </span>python3-pil<span class="w"> </span>python3-numpy
 sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>python3-spidev<span class="w"> </span>python3-rpi.gpio
 sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>python3-psutil
-</code></pre></div>
-
-<ol>
-<li>Clonei o <a href="https://github.com/waveshareteam/e-Paper/">repositório da waveshareteam</a> e entrei na pasta correta:</li>
-</ol>
-<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/waveshareteam/e-Paper.git
+</code></pre></div></li>
+<li>Clonei o <a href="https://github.com/waveshareteam/e-Paper/">repositório da waveshareteam</a> e entrei na pasta correta:
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/waveshareteam/e-Paper.git
 <span class="nb">cd</span><span class="w"> </span>~/e-Paper/RaspberryPi_JetsonNano/python
-</code></pre></div>
-
-<ol>
+</code></pre></div></li>
 <li>Para o meu e-paper Waveshare de 2.13 polegadas v4, utilizei o respectivo módulo <strong>epd2in13_V4</strong> de <code>../lib/waveshare_epd</code> e testei-o com <code>../examples/epd2in13_V4_test.py</code>.
 A partir daí, construí o <a href="../system_monitor_v1.txt">system_monitor_v1</a> para exibir informações do sistema, como temperatura, tempo de atividade e endereço IP.</li>
 </ol>

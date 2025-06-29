@@ -14,7 +14,7 @@ For this setup, I’ll be using Windows as my main operating system, along with 
 
 If you’re looking for a deeper explanation of how the Pwnagotchi works, feel free to check out [in depth info](../docs/HOW_IT_WORKS.md).
 
-![Pwnzilla Setup](images/pwnzilla-setup.jpg)  
+![Pwnzilla Setup](../assets/images/pwnzilla-setup.jpg)  
 
 ## Hardware
 - Raspberry Pi Zero 2W with headers 
