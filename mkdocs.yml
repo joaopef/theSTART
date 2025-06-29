@@ -43,6 +43,9 @@ extra:
       link: https://github.com/joaopef/
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/joaopefer/
+  analytics:
+    provider: google
+    property: G-4XTYJFCX0T
 
 plugins:
   - search
