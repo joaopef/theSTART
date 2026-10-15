@@ -1,19 +1,20 @@
-site_name: theSTART
-site_url: https://joaopef.github.io/theSTART/
+site_name: João Ferreira
+site_url: https://jopefer.com/
+site_description: Projetos, experiências e apontamentos de João Ferreira. Cibersegurança, eletrónica e software.
 
 nav:
   - Home: index.md
   - Guides:
       - Pwnzilla: PwnZilla Guia.md
-      - Pwnzilla INFO: 1HOW_IT_WORKS.md
+      - Pwnzilla INFO: HOW_IT_WORKS.md
       - Self-Hosted Password Manager: Password Manager.md
       - Air Monitor: Air Monitor.md
 
 theme:
   name: material
-  home_url: /theSTART/
-  favicon: images/lightning.svg
-  logo: images/lightning.svg
+  custom_dir: overrides
+  favicon: assets/images/lightning.svg
+  logo: assets/images/lightning.svg
   features:
     - header.autohide
     - navigation.top

@@ -1,0 +1,103 @@
+{% set pt = config.theme.language == 'pt' %}
+{% set copy = {
+  'skip': 'Saltar para o conteúdo' if pt else 'Skip to content',
+  'projects': 'Projetos' if pt else 'Projects',
+  'notes': 'Apontamentos' if pt else 'Notes',
+  'contact': 'Contacto' if pt else 'Contact',
+  'theme': 'Mudar tema' if pt else 'Toggle theme',
+  'eyebrow': 'Um pouco sobre mim' if pt else 'A little about me',
+  'intro': 'Gosto de perceber como as coisas funcionam. E, às vezes, de as desmontar para descobrir.' if pt else 'I like figuring out how things work. Sometimes by taking them apart.',
+  'bio': 'Sou o João. Interesso-me por cibersegurança, eletrónica e software. Por aqui junto os projetos que vou construindo, as experiências e aquilo que aprendo pelo caminho.' if pt else 'I’m João. I’m interested in cybersecurity, electronics, and software. This is where I collect the things I build, the experiments I try, and what I learn along the way.',
+  'hint': 'Experimenta mexer o rato.' if pt else 'Try moving your mouse.',
+  'motion': 'Pausar animação' if pt else 'Pause animation',
+  'resume': 'Retomar animação' if pt else 'Resume animation',
+  'selection': 'Algumas coisas que tenho construído.' if pt else 'A few things I’ve been building.',
+  'urbanos': 'O projeto Urbanos, na sua própria casa.' if pt else 'The Urbanos project, in its own home.',
+  'jarvis': 'O meu projeto Jarvis.' if pt else 'My Jarvis project.',
+  'air': 'Monitorização da qualidade do ar e controlo de humidade com ESP32.' if pt else 'Air quality monitoring and humidity control with an ESP32.',
+  'vault': 'Um gestor de palavras-passe alojado num Raspberry Pi.' if pt else 'A password manager running on a Raspberry Pi.',
+  'pwn': 'Montagem, configuração e experiências com um Pwnagotchi.' if pt else 'Building, configuring, and experimenting with a Pwnagotchi.',
+  'writing': 'O que vou aprendendo' if pt else 'Learning in public',
+  'writing_intro': 'Guias e notas técnicas dos meus projetos. Também para me lembrar de como fiz as coisas.' if pt else 'Guides and technical notes from my projects. Also a reminder to my future self of how I did things.',
+  'guide': 'Guia' if pt else 'Guide',
+  'all_code': 'Mais experiências no GitHub' if pt else 'More experiments on GitHub',
+  'hello': 'Vamos conversar.' if pt else 'Say hello.',
+  'hello_text': 'Uma ideia, uma pergunta ou um projeto em comum? Encontra-me por aqui.' if pt else 'An idea, a question, or a project in common? You can find me here.',
+  'footer': 'Sempre a aprender. Ocasionalmente a partir coisas.' if pt else 'Always learning. Occasionally breaking things.'
+} %}
+<!doctype html>
+<html lang="{{ 'pt-PT' if pt else 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>João Ferreira — jopefer</title>
+  <meta name="description" content="{{ copy.bio }}">
+  <link rel="canonical" href="{{ page.canonical_url }}">
+  <meta property="og:title" content="João Ferreira — jopefer">
+  <meta property="og:description" content="{{ copy.intro }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ page.canonical_url }}">
+  <link rel="icon" type="image/svg+xml" href="{{ 'assets/portfolio/favicon.svg' | url }}">
+  <link rel="stylesheet" href="{{ 'assets/portfolio/portfolio.css' | url }}">
+  <script>try { const theme = localStorage.getItem('jopefer-theme'); if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme; } catch {}</script>
+  <script defer src="{{ 'assets/portfolio/portfolio.js' | url }}"></script>
+</head>
+<body>
+  <a class="skip" href="#main">{{ copy.skip }}</a>
+  <div class="page">
+    <header class="header">
+      <a class="wordmark" href="./" aria-label="jopefer — Home">jp<span>.</span></a>
+      <nav aria-label="{{ copy.projects }}">
+        <a href="#projects">{{ copy.projects }}</a>
+        <a href="#contact">{{ copy.contact }}</a>
+        <a class="language" href="{{ '../' if pt else 'pt/' }}" lang="{{ 'en' if pt else 'pt-PT' }}">{{ 'EN' if pt else 'PT' }}</a>
+        <button class="theme-toggle" type="button" aria-label="{{ copy.theme }}" title="{{ copy.theme }}" hidden><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20.7 13A8.8 8.8 0 0 1 11 3.3 8.8 8.8 0 1 0 20.7 13Z"/></svg></button>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="intro" aria-labelledby="name">
+        <div class="intro-top">
+          <div><p class="eyebrow">{{ copy.eyebrow }}</p><h1 id="name">João Ferreira<span>.</span></h1><p class="handle">@jopefer</p></div>
+          <div class="playground">
+            <svg class="orbit" viewBox="0 0 180 180" fill="none" aria-hidden="true">
+              <g class="orbit-back"><ellipse cx="90" cy="90" rx="76" ry="25" transform="rotate(-35 90 90)"/><ellipse cx="90" cy="90" rx="76" ry="25" transform="rotate(35 90 90)"/></g>
+              <g class="orb"><circle class="orb-fill" cx="90" cy="90" r="40"/><path class="orb-grid" d="M50 90h80M90 50c-26 20-26 60 0 80M90 50c26 20 26 60 0 80M56 70c22 11 46 11 68 0M56 110c22-11 46-11 68 0"/><g class="eyes"><ellipse cx="80" cy="88" rx="3" ry="4.5"/><ellipse cx="100" cy="88" rx="3" ry="4.5"/><path d="M85 100q5 4 10 0"/></g></g>
+              <g class="orbit-front"><path d="M28 123c14 11 53 0 87-24s54-54 43-66M22 57c-11 12 8 42 43 66s73 35 87 24"/></g>
+              <g class="sparkles"><path d="M33 29v10m-5-5h10M145 126v12m-6-6h12"/><circle cx="135" cy="35" r="3"/><circle cx="31" cy="139" r="2"/></g>
+            </svg>
+            <button class="motion-toggle" aria-label="{{ copy.motion }}" data-pause="{{ copy.motion }}" data-resume="{{ copy.resume }}" aria-pressed="false" title="{{ copy.motion }}" hidden><span aria-hidden="true">Ⅱ</span></button>
+          </div>
+        </div>
+        <p class="lead">{{ copy.intro }}</p>
+        <p class="bio">{{ copy.bio }}</p>
+        <div class="socials"><a href="https://github.com/joaopef">GitHub <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/joaopefer/">LinkedIn <span aria-hidden="true">↗</span></a></div>
+      </section>
+      <section class="projects section" id="projects" aria-labelledby="projects-title">
+        <div class="section-heading"><h2 id="projects-title">{{ copy.projects }}</h2><span class="small-label">01 — 05</span></div>
+        <p class="section-description">{{ copy.selection }}</p>
+        <div class="project-list">
+          {% for name, description, href, tag in [
+            ('Urbanos', copy.urbanos, 'https://urbanos.jopefer.com', 'Web'),
+            ('Jarvis', copy.jarvis, 'https://jarvis.jopefer.com', 'Software'),
+            ('Air Monitor', copy.air, 'Air%20Monitor/', 'IoT'),
+            ('Vaultwarden', copy.vault, 'Password%20Manager/', 'Self-hosting'),
+            ('PwnZilla', copy.pwn, 'PwnZilla%20Guia/', 'Security')
+          ] %}
+          <a class="project" href="{{ href }}"><div><h3>{{ name }} <span class="arrow" aria-hidden="true">↗</span></h3><p>{{ description }}</p></div><span class="tag">{{ tag }}</span></a>
+          {% endfor %}
+        </div>
+        <a class="text-link" href="https://github.com/joaopef?tab=repositories">{{ copy.all_code }} <span aria-hidden="true">↗</span></a>
+      </section>
+      <section class="section notes" aria-labelledby="notes-title">
+        <h2 id="notes-title">{{ copy.writing }}</h2><p class="section-description">{{ copy.writing_intro }}</p>
+        <a class="note" href="HOW_IT_WORKS/"><span>Pwnagotchi: {{ 'como funciona' if pt else 'how it works' }}</span><span>{{ copy.notes }} <span aria-hidden="true">↗</span></span></a>
+        <a class="note" href="Password%20Manager/"><span>Vaultwarden + Raspberry Pi</span><span>{{ copy.guide }} <span aria-hidden="true">↗</span></span></a>
+        <a class="note" href="Air%20Monitor/"><span>ESP32, MQTT &amp; Grafana</span><span>{{ copy.guide }} <span aria-hidden="true">↗</span></span></a>
+      </section>
+      <section class="section contact" id="contact" aria-labelledby="contact-title"><h2 id="contact-title">{{ copy.hello }}</h2><p>{{ copy.hello_text }}</p><a class="text-link" href="https://www.linkedin.com/in/joaopefer/">LinkedIn <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/joaopef">GitHub <span aria-hidden="true">↗</span></a></section>
+    </main>
+    <footer><span>© {{ build_date_utc.year }} João Ferreira</span><span>{{ copy.footer }}</span></footer>
+  </div>
+</body>
+</html>
