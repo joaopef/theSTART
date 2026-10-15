@@ -10,10 +10,10 @@
   });
 
   const scene = document.querySelector('.playground');
-  const orb = scene.querySelector('.orb');
+  const bolt = scene.querySelector('.bolt');
   const eyes = scene.querySelector('.eyes');
-  const front = scene.querySelector('.orbit-front');
-  const back = scene.querySelector('.orbit-back');
+  const front = scene.querySelector('.discharge-front');
+  const back = scene.querySelector('.discharge-back');
   const sparks = scene.querySelector('.sparkles');
   const toggle = scene.querySelector('.motion-toggle');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
@@ -24,12 +24,12 @@
     cancelAnimationFrame(frame);
     frame = 0;
     x = y = targetX = targetY = 0;
-    for (const part of [orb, eyes, front, back, sparks]) part.removeAttribute('transform');
+    for (const part of [bolt, eyes, front, back, sparks]) part.removeAttribute('transform');
   }
   function render() {
     x += (targetX - x) * .09;
     y += (targetY - y) * .09;
-    orb.setAttribute('transform', `translate(${x * 5} ${y * 5})`);
+    bolt.setAttribute('transform', `translate(${x * 6} ${y * 5}) rotate(${x * 8} 90 90)`);
     eyes.setAttribute('transform', `translate(${x * 4} ${y * 4})`);
     front.setAttribute('transform', `rotate(${x * 9} 90 90) translate(${x * 2} ${y * 3})`);
     back.setAttribute('transform', `rotate(${-x * 7} 90 90)`);
