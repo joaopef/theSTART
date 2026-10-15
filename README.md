@@ -25,3 +25,6 @@ GitHub Pages must use **GitHub Actions** as its publishing source and **jopefer.
 ### Domain
 
 In Cloudflare, point `@` to `joaopef.github.io` using a DNS-only CNAME (Cloudflare flattens it at the apex). Optionally point `www` to the same hostname. Keep the existing project subdomain records. Enable Enforce HTTPS in GitHub Pages once GitHub has issued the certificate.
+
+The project guides share the homepage theme through overrides/guide.html, with responsive contents, guide search and code copying. Search keeps both language indexes so identical guide text remains searchable in either language.
+

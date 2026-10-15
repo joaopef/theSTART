@@ -1,0 +1,57 @@
+{% set pt = config.theme.language == 'pt' %}
+{% set home = ('pt/' if pt else './') | url %}
+{% set guide_root = 'pt/' if pt else '' %}
+{% set toc = page.toc | list %}
+{% set toc = toc[0].children if toc | length == 1 and toc[0].children else toc %}
+{% set guides = [('Air Monitor', 'Air Monitor'), ('Vaultwarden', 'Password Manager'), ('PwnZilla', 'PwnZilla Guia'), ('Pwnagotchi: como funciona' if pt else 'Pwnagotchi: how it works', 'HOW_IT_WORKS')] %}
+{% macro toc_items(items) %}
+  <ul>{% for item in items %}<li><a href="{{ item.url }}">{{ item.title }}</a>{% if item.children %}{{ toc_items(item.children) }}{% endif %}</li>{% endfor %}</ul>
+{% endmacro %}
+<!doctype html>
+<html lang="{{ 'pt-PT' if pt else 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>{{ page.title | striptags }} — João Ferreira</title>
+  <meta name="description" content="{{ page.meta.description | default(config.site_description, true) }}">
+  <link rel="canonical" href="{{ page.canonical_url }}">
+  <link rel="icon" type="image/svg+xml" href="{{ 'assets/portfolio/favicon.svg' | url }}">
+  <link rel="stylesheet" href="{{ 'assets/portfolio/portfolio.css' | url }}">
+  <link rel="stylesheet" href="{{ 'assets/portfolio/guide.css' | url }}">
+  <script>try { const theme = localStorage.getItem('jopefer-theme'); if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme; } catch {}</script>
+  <script defer src="{{ 'assets/portfolio/portfolio.js' | url }}"></script>
+  <script defer src="{{ 'assets/portfolio/guide.js' | url }}"></script>
+</head>
+<body class="guide-page" data-language="{{ 'pt' if pt else 'en' }}">
+  <a class="skip" href="#main">{{ 'Saltar para o conteúdo' if pt else 'Skip to content' }}</a>
+  <div class="guide-shell">
+    <header class="header">
+      <a class="wordmark" href="{{ home }}" aria-label="jopefer — Home">jp<span>.</span></a>
+      <nav aria-label="{{ 'Navegação principal' if pt else 'Main navigation' }}">
+        <a href="{{ home }}#projects">{{ 'Projetos' if pt else 'Projects' }}</a>
+        <a href="{{ home }}#contact">{{ 'Contacto' if pt else 'Contact' }}</a>
+        <a class="language" href="{{ ((page.url[3:] if page.url.startswith('pt/') else page.url) if pt else ('pt/' ~ page.url)) | url }}" lang="{{ 'en' if pt else 'pt-PT' }}">{{ 'EN' if pt else 'PT' }}</a>
+        <button class="theme-toggle" type="button" aria-label="{{ 'Mudar tema' if pt else 'Toggle theme' }}" title="{{ 'Mudar tema' if pt else 'Toggle theme' }}" hidden><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20.7 13A8.8 8.8 0 0 1 11 3.3 8.8 8.8 0 1 0 20.7 13Z"/></svg></button>
+      </nav>
+    </header>
+    <div class="guide-toolbar">
+      <a class="back-link" href="{{ home }}">← {{ 'Voltar ao portefólio' if pt else 'Back to portfolio' }}</a>
+      <details class="guide-search" hidden data-index="{{ 'search/search_index.json' | url }}">
+        <summary>{{ 'Pesquisar nos guias' if pt else 'Search the guides' }} <span aria-hidden="true">⌕</span></summary>
+        <div class="search-panel"><label for="guide-query">{{ 'O que procuras?' if pt else 'What are you looking for?' }}</label><input id="guide-query" type="search" autocomplete="off" placeholder="{{ 'Ex.: ESP32, MQTT, Raspberry Pi…' if pt else 'e.g. ESP32, MQTT, Raspberry Pi…' }}"><p class="search-status" role="status"></p><ul class="search-results"></ul></div>
+      </details>
+    </div>
+    <div class="guide-layout">
+      <main id="main">
+        <p class="eyebrow">{{ 'Projetos & apontamentos' if pt else 'Projects & notes' }}</p>
+        <details class="mobile-contents"><summary>{{ 'Nesta página' if pt else 'On this page' }}</summary>{{ toc_items(toc) }}</details>
+        <article class="guide-content" data-copy="{{ 'Copiar código' if pt else 'Copy code' }}" data-copied="{{ 'Copiado!' if pt else 'Copied!' }}" data-failed="{{ 'Seleciona e copia o código' if pt else 'Select and copy the code' }}">{{ page.content }}</article>
+        <section class="related-guides" aria-labelledby="related-title"><h2 id="related-title">{{ 'Explorar os guias' if pt else 'Explore the guides' }}</h2><div>{% for title, slug in guides %}{% set target = guide_root ~ slug ~ '/' %}<a href="{{ target | url }}" {% if page.file.name == slug %}aria-current="page"{% endif %}><span>{{ title }}</span><span aria-hidden="true">{{ '•' if page.file.name == slug else '↗' }}</span></a>{% endfor %}</div></section>
+      </main>
+      <aside class="desktop-contents" aria-label="{{ 'Índice da página' if pt else 'Page contents' }}"><div class="contents-sticky"><p class="eyebrow">{{ 'Nesta página' if pt else 'On this page' }}</p>{{ toc_items(toc) }}<a class="to-top" href="#main">↑ {{ 'Voltar ao início' if pt else 'Back to top' }}</a></div></aside>
+    </div>
+    <footer><span>© {{ build_date_utc.year }} João Ferreira</span><span>{{ 'Sempre a aprender. Ocasionalmente a partir coisas.' if pt else 'Always learning. Occasionally breaking things.' }}</span></footer>
+  </div>
+</body>
+</html>

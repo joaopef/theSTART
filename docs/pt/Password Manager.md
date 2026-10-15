@@ -153,7 +153,7 @@ Uma vez que o explorador de ficheiros da Web UI apenas mostra ficheiros locais, 
 ```bash
   scp joaof@192.168.1.228:/etc/letsencrypt/live/Vaultwarden.duckdns.org/fullchain.pem /home/joaof/Documents/Certificates
   scp joaof@192.168.1.228:/etc/letsencrypt/live/Vaultwarden.duckdns.org/privkey.pem /home/joaof/Documents/Certificates
-  ```
+```
 2. Voltar à **Web UI do Nginx Proxy Manager** > **SSL Certificates** >
 **Add SSL Certificate** > **Custom** e selecionar os ficheiros de certificado:
 ![certificados](../assets/images/password-manager/SSL_Certificate.png)

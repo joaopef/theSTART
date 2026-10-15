@@ -10,6 +10,7 @@
   });
 
   const scene = document.querySelector('.playground');
+  if (!scene) return;
   const bolt = scene.querySelector('.bolt');
   const eyes = scene.querySelector('.eyes');
   const front = scene.querySelector('.discharge-front');

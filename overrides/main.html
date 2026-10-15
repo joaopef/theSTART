@@ -1,1 +1,1 @@
-{% extends "portfolio.html" if page and page.file.name == 'index' else "base.html" %}
+{% extends "portfolio.html" if page and page.file.name == 'index' else "guide.html" if page else "base.html" %}
